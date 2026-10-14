@@ -1,41 +1,113 @@
 'use strict';
 
-// Progressive enhancement: the survey remains readable without JavaScript.
-const operationNames = ['reading', 'writing', 'sharing', 'interacting'];
-function showOperation(name) {
-  if (!operationNames.includes(name)) return;
-  document.querySelectorAll('.operation-panel').forEach(panel => { panel.hidden = panel.id !== name; });
-  document.querySelectorAll('[data-operation]').forEach(link => {
-    const active = link.dataset.operation === name;
-    link.classList.toggle('active', active);
-    if (active) link.setAttribute('aria-current', 'true');
+// The entire survey, every figure, and the GitHub bibliography work without JS.
+// Enhancement adds figure galleries, an accessible viewer, and library filters.
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+  const tabs = [...gallery.querySelectorAll('[data-figure-tab]')];
+  const panels = [...gallery.querySelectorAll('[data-figure-panel]')];
+  const tabList = gallery.querySelector('.figure-tabs');
+  tabList.setAttribute('role', 'tablist');
+  function select(id, focus = false) {
+    tabs.forEach(tab => {
+      const active = tab.dataset.figureTab === id;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    });
+    panels.forEach(panel => { panel.hidden = panel.id !== id; });
+  }
+  tabs.forEach((tab, index) => {
+    const id = tab.dataset.figureTab;
+    tab.id = 'tab-' + id;
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', id);
+    const panel = panels.find(item => item.id === id);
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tab.id);
+    panel.tabIndex = 0;
+    tab.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      select(id);
+    });
+    tab.addEventListener('keydown', event => {
+      const target = event.key === 'ArrowRight' ? (index + 1) % tabs.length :
+        event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length :
+        event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : -1;
+      if (target < 0) return;
+      event.preventDefault();
+      select(tabs[target].dataset.figureTab, true);
+    });
+  });
+  const fromHash = () => {
+    const id = location.hash.slice(1);
+    if (panels.some(panel => panel.id === id)) select(id);
+  };
+  select(tabs[0].dataset.figureTab);
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+});
+
+const chapterLinks = [...document.querySelectorAll('.chapter-nav a')];
+const chapters = [...document.querySelectorAll('[data-chapter]')];
+let scrollPending = false;
+let currentChapter = '';
+function updateChapter() {
+  scrollPending = false;
+  const threshold = window.innerHeight * .35;
+  let active = chapters[0];
+  for (const chapter of chapters) {
+    if (chapter.getBoundingClientRect().top <= threshold) active = chapter;
+  }
+  if (currentChapter === active.id) return;
+  currentChapter = active.id;
+  chapterLinks.forEach(link => {
+    if (link.hash === '#' + currentChapter) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
   });
+  document.getElementById('current-chapter').textContent = active.dataset.chapter;
+  document.getElementById('chapter-position').textContent =
+    String(chapters.indexOf(active) + 1).padStart(2, '0') + ' / ' + chapters.length;
 }
-showOperation(operationNames.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'reading');
-document.querySelectorAll('a[href]').forEach(link => {
-  const name = link.getAttribute('href').slice(1);
-  if (operationNames.includes(name)) link.addEventListener('click', () => showOperation(name));
-});
-window.addEventListener('hashchange', () => showOperation(location.hash.slice(1)));
+window.addEventListener('scroll', () => {
+  if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateChapter); }
+}, { passive: true });
+window.addEventListener('resize', updateChapter);
+window.addEventListener('load', updateChapter);
+updateChapter();
 
-const traceTime = document.getElementById('trace-time');
-function updateTrace() {
-  const time = Number(traceTime.value);
-  const x = 24 + time * 3.9;
-  document.getElementById('trace-car').setAttribute('transform', `translate(${x} 0)`);
-  document.getElementById('world-car').setAttribute('transform', `translate(${x} 0)`);
-  // The identity changes only while the whole car is occluded.
-  const changed = time >= 52;
-  document.querySelector('#trace-car path').setAttribute('fill', changed ? '#c8754f' : '#06b0f0');
-  const inOcclusion = x >= 194 && x + 80 <= 332;
-  document.getElementById('trace-status').textContent = inOcclusion ? 'Hidden from the camera' : changed ? 'A different identity returns' : 'Blue car enters';
-  document.getElementById('world-status').textContent = inOcclusion ? 'Identity persists out of view' : time >= 52 ? 'The same blue car returns' : 'Blue car enters';
-  document.getElementById('time-value').textContent = `${time}%`;
-  traceTime.setAttribute('aria-valuetext', `${time}% through the sequence`);
+const figureDialog = document.getElementById('figure-dialog');
+const figureViewport = figureDialog.querySelector('.figure-viewport');
+const expandedFigure = document.getElementById('expanded-figure');
+const zoomFigure = document.getElementById('zoom-figure');
+let figureTrigger = null;
+function setFigureZoom(zoomed) {
+  figureViewport.classList.toggle('zoomed', zoomed);
+  zoomFigure.setAttribute('aria-pressed', String(zoomed));
+  zoomFigure.textContent = zoomed ? (figureViewport.classList.contains('tall') ? 'Fit to width' : 'Fit to screen') : 'Zoom in';
+  if (!zoomed) { figureViewport.scrollTop = 0; figureViewport.scrollLeft = 0; }
 }
-traceTime.addEventListener('input', updateTrace);
-updateTrace();
+document.querySelectorAll('[data-figure]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    figureTrigger = link;
+    const thumbnail = link.querySelector('img');
+    expandedFigure.src = link.href;
+    expandedFigure.alt = thumbnail.alt;
+    // A portrait timeline should open at a readable width, with native scrolling.
+    figureViewport.classList.toggle('tall', Number(thumbnail.getAttribute('height')) > Number(thumbnail.getAttribute('width')) * 1.1);
+    document.getElementById('figure-title').textContent = link.dataset.title;
+    document.getElementById('original-figure').href = link.href;
+    setFigureZoom(false);
+    figureDialog.showModal();
+    document.getElementById('close-figure').focus();
+  });
+});
+zoomFigure.addEventListener('click', () => setFigureZoom(!figureViewport.classList.contains('zoomed')));
+expandedFigure.addEventListener('click', () => setFigureZoom(!figureViewport.classList.contains('zoomed')));
+document.getElementById('close-figure').addEventListener('click', () => figureDialog.close());
+figureDialog.addEventListener('close', () => { if (figureTrigger?.isConnected) figureTrigger.focus(); });
 
 const categoryNames = {
   understanding: 'Reading', generation: 'Writing', unified: 'Sharing',
@@ -47,6 +119,7 @@ const controls = {
   venue: document.getElementById('venue'), sort: document.getElementById('sort')
 };
 const state = { papers: [], filtered: [], category: 'all', page: 1, loaded: false };
+let lastLibraryQuery = location.search;
 const list = document.getElementById('paper-list');
 const dialog = document.getElementById('bib-dialog');
 let returnFocus = null;
@@ -99,6 +172,7 @@ function saveFilters() {
   if (controls.sort.value !== 'newest') params.set('sort', controls.sort.value);
   const query = params.toString();
   history.replaceState(null, '', `${location.pathname}${query ? '?' + query : ''}${location.hash}`);
+  lastLibraryQuery = location.search;
 }
 function filterPapers(resetPage = true, persist = true) {
   if (!state.loaded) return;
@@ -154,6 +228,7 @@ function resetFilters() {
   filterPapers();
 }
 function readFilters() {
+  lastLibraryQuery = location.search;
   const params = new URLSearchParams(location.search);
   controls.search.value = params.get('q') || '';
   state.category = Object.hasOwn(categoryNames, params.get('category')) ? params.get('category') : 'all';
@@ -249,5 +324,8 @@ document.getElementById('copy-bib').addEventListener('click', async () => {
     document.getElementById('copy-status').textContent = 'Copy was unavailable. The reference is selected for manual copying.';
   }
 });
-window.addEventListener('popstate', () => { if (state.loaded) { readFilters(); filterPapers(true, false); } });
+window.addEventListener('popstate', () => {
+  // A chapter anchor changes history too; do not rebuild the bibliography for it.
+  if (state.loaded && location.search !== lastLibraryQuery) { readFilters(); filterPapers(true, false); }
+});
 loadLibrary();

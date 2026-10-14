@@ -1,0 +1,104 @@
+{
+  "overview": {
+    "source": "F01_teaser_B_video_bridge_v2.pdf",
+    "file": "assets/figures/overview.webp",
+    "width": 2600,
+    "height": 1300
+  },
+  "timeline": {
+    "source": "F02_field_timeline-5.pdf",
+    "file": "assets/figures/timeline.webp",
+    "width": 2600,
+    "height": 3680
+  },
+  "reading": {
+    "source": "F04_representation_learning-1.pdf",
+    "file": "assets/figures/reading.webp",
+    "width": 2600,
+    "height": 1547
+  },
+  "writing-latents": {
+    "source": "F05_latent_representations-2.pdf",
+    "file": "assets/figures/writing-latents.webp",
+    "width": 2600,
+    "height": 1735
+  },
+  "writing-models": {
+    "source": "F06_video_generation-1.pdf",
+    "file": "assets/figures/writing-models.webp",
+    "width": 2600,
+    "height": 1662
+  },
+  "writing-planning": {
+    "source": "F06_llm_video_generation-1.pdf",
+    "file": "assets/figures/writing-planning.webp",
+    "width": 2600,
+    "height": 831
+  },
+  "writing-control": {
+    "source": "F07_control_injection-2.pdf",
+    "file": "assets/figures/writing-control.webp",
+    "width": 2600,
+    "height": 1734
+  },
+  "sharing-architectures": {
+    "source": "F08_unified_architectures-2.pdf",
+    "file": "assets/figures/sharing-architectures.webp",
+    "width": 2600,
+    "height": 1782
+  },
+  "sharing-learning": {
+    "source": "F10_unified_learning_paradigms-2.pdf",
+    "file": "assets/figures/sharing-learning.webp",
+    "width": 2600,
+    "height": 1525
+  },
+  "interacting": {
+    "source": "F11_world_model_taxonomy_concept.pdf",
+    "file": "assets/figures/interacting.webp",
+    "width": 2600,
+    "height": 1838
+  },
+  "challenge-1": {
+    "source": "challenges/C01_long_horizon.png",
+    "file": "assets/figures/challenge-1.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-2": {
+    "source": "challenges/C02_physical_causal.png",
+    "file": "assets/figures/challenge-2.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-3": {
+    "source": "challenges/C03_measurable_synergy.png",
+    "file": "assets/figures/challenge-3.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-4": {
+    "source": "challenges/C04_standardized_evaluation.png",
+    "file": "assets/figures/challenge-4.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-5": {
+    "source": "challenges/C05_unlabeled_control.png",
+    "file": "assets/figures/challenge-5.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-6": {
+    "source": "challenges/C06_scene_embodiment.png",
+    "file": "assets/figures/challenge-6.webp",
+    "width": 1536,
+    "height": 1024
+  },
+  "challenge-7": {
+    "source": "challenges/C07_stochastic_rare.png",
+    "file": "assets/figures/challenge-7.webp",
+    "width": 1536,
+    "height": 1024
+  }
+}

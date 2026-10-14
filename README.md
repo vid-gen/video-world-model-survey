@@ -7,8 +7,9 @@ Video.
 **[Visit the website](https://vid-gen.github.io/video-world-model-survey/)** ·
 **[Browse the literature repository](https://github.com/vid-gen/awesome-video-world-model)**
 
-The site presents the survey framework, four operations, world-model taxonomy,
-evidence ladder, seven open questions, and a searchable collection of 652
+The site presents the survey through its original artwork: the four-operation
+overview, research timeline, representation and architecture diagrams, world-model
+taxonomy, and seven challenge illustrations. A searchable collection contains 652
 references. The manuscript is forthcoming; no paper download or publication
 identifier is implied by this website.
 
@@ -51,12 +52,30 @@ the project URL above.
 
 ## Content and artwork
 
-`assets/survey-overview.png` is a web rendering of the survey authors' overview
-figure. `assets/world-lens.svg`, `assets/mark.svg`, and the occlusion illustration
-are original web diagrams. The occlusion interaction is a conceptual illustration,
-not model output or an empirical benchmark. Third-party research remains credited
-through its individual bibliographic records and source links.
+The 17 figures in `assets/figures/` are lossless web renderings of the original
+manuscript artwork, not redrawn diagrams. `assets/figures/manifest.json` records
+each exact source filename and rendered dimensions. `assets/survey-overview.png`
+is retained for social previews. The four operation symbols reproduce the paper's
+Font Awesome eye, pencil, exchange, and gamepad glyphs and ink colors.
+
+See [artwork credits and provenance](assets/CREDITS.md). Only selected public
+artwork is included; the manuscript sources are not part of this repository.
+
+To re-export from a local manuscript, install Poppler and WebP utilities, then run:
+
+```sh
+python3 tools/render_figures.py /path/to/manuscript
+```
+
+Review the manifest and figure captions after any export. The source-file map is
+explicit so an older similarly named figure cannot silently replace the active
+version. Figures open in a keyboard-accessible viewer with fit/zoom controls;
+original-image links remain functional without JavaScript. The generation and
+unification galleries also expose all figures when JavaScript is unavailable.
 
 Design references: [Physical2RSI](https://eurekaleo.github.io/Awesome-Physical2RSI/)
-and [OmniScientist](https://omni-scientist.github.io/). The site uses original layout,
-code, and artwork; it does not copy their assets.
+and [OmniScientist](https://omni-scientist.github.io/). The centered research cover,
+large figure-led chapters, restrained controls, and chapter-dot navigation adapt
+their presentation patterns. Their branding, illustrations, and code are not
+copied. Scrolling stays native, including on mobile; reduced-motion preferences
+are respected.

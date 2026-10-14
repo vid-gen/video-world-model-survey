@@ -3,114 +3,243 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#142a36">
-  <title>Video World Model Survey · Reading, Writing, Sharing & Interacting</title>
-  <meta name="description" content="Revisiting Video Foundation Models through the Lens of World Modeling. Explore four operations, a taxonomy of video world models, open questions, and 652 research references.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Video Foundation Models through the Lens of World Modeling</title>
+  <meta name="description" content="Reading, Writing, Sharing, and Interacting with the World through Video. Explore the survey through its original figures, research timeline, and 652 references.">
   <meta property="og:title" content="Revisiting Video Foundation Models through the Lens of World Modeling">
-  <meta property="og:description" content="Reading, Writing, Sharing, and Interacting with the World through Video. A survey and open research library.">
+  <meta property="og:description" content="A visual guide to the survey: four operations, one world-modeling lens, and an open research library.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vid-gen.github.io/video-world-model-survey/">
   <meta property="og:image" content="https://vid-gen.github.io/video-world-model-survey/assets/survey-overview.png">
   <link rel="canonical" href="https://vid-gen.github.io/video-world-model-survey/">
-  <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/reading.svg">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Video World Model Survey home"><img src="assets/mark.svg" width="32" height="32" alt=""><span>Video <b>↔</b> World</span></a>
+    <a class="wordmark" href="#top">Video <span>↔</span> World <small>A survey</small></a>
     <nav aria-label="Main navigation">
-      <a href="#lens">The lens</a><a href="#operations">Four operations</a><a href="#world-models">World models</a><a href="#questions">Open questions</a><a href="#library">Literature</a>
+      <a href="#lens">Survey</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#library">Literature</a>
+      <a href="https://github.com/vid-gen/awesome-video-world-model">GitHub ↗</a>
     </nav>
-    <a class="github-link" href="https://github.com/vid-gen/awesome-video-world-model">GitHub <span aria-hidden="true">↗</span></a>
   </header>
-
+  <nav class="chapter-nav" aria-label="Chapters">
+      <a href="#top" aria-label="Title" aria-current="location"><span>Title</span></a>
+      <a href="#lens" aria-label="Overview"><span>Overview</span></a>
+      <a href="#timeline" aria-label="Timeline"><span>Timeline</span></a>
+      <a href="#reading" aria-label="Reading"><span>Reading</span></a>
+      <a href="#writing" aria-label="Writing"><span>Writing</span></a>
+      <a href="#sharing" aria-label="Sharing"><span>Sharing</span></a>
+      <a href="#interacting" aria-label="Interacting"><span>Interacting</span></a>
+      <a href="#evidence" aria-label="Evidence"><span>Evidence</span></a>
+      <a href="#questions" aria-label="Open questions"><span>Open questions</span></a>
+      <a href="#library" aria-label="Literature"><span>Literature</span></a>
+  </nav>
   <main id="main">
-    <section class="hero section-shell" id="top" aria-labelledby="project-title">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span> A survey of video foundation models</p>
-          <h1 id="project-title">Revisiting Video<br>Foundation Models <em>through the Lens of World Modeling</em></h1>
-          <p class="hero-deck">Reading, Writing, Sharing, and Interacting<br class="desktop-break"> with the World through Video.</p>
-          <div class="hero-actions"><a class="button primary" href="#lens">Explore the survey <span aria-hidden="true">↓</span></a><a class="button quiet" href="#library"><span>Browse <span data-total>652</span> references</span><span aria-hidden="true">↗</span></a></div>
-          <p class="release-note">Survey overview & literature available · Paper forthcoming</p>
+    <section class="cover" id="top" data-chapter="Title" aria-labelledby="project-title">
+      <div class="cover-inner">
+        <h1 id="project-title"><span class="title-prelude">Revisiting</span>Video Foundation Models<span class="title-lens">through the Lens of <em>World Modeling</em></span></h1>
+        <nav class="four-operations" aria-label="Four operations">
+          <a href="#reading" class="reading"><img src="assets/icons/reading.svg" width="36" height="36" alt=""><span>Reading</span></a>
+          <a href="#writing" class="writing"><img src="assets/icons/writing.svg" width="36" height="36" alt=""><span>Writing</span></a>
+          <a href="#sharing" class="sharing"><img src="assets/icons/sharing.svg" width="36" height="36" alt=""><span>Sharing</span></a>
+          <a href="#interacting" class="interacting"><img src="assets/icons/interacting.svg" width="36" height="36" alt=""><span>Interacting</span></a>
+        </nav>
+        <p class="cover-subtitle">with the World through Video</p>
+        <div class="byline">
+          <p class="authors">Shengqiong Wu<sup>1,*</sup> <span>·</span> Meng Luo<sup>2,*</sup> <span>·</span> Bobo Li<sup>1</sup> <span>·</span> Ziwei Liu<sup>3</sup><br>Shuicheng Yan<sup>2</sup> <span>·</span> Ming-Hsuan Yang<sup>4</sup> <span>·</span> Philip Torr<sup>1</sup> <span>·</span> Hao Fei<sup>1,†</sup></p>
+          <p class="affiliations"><span><sup>1</sup> University of Oxford</span><span><sup>2</sup> National University of Singapore</span><span><sup>3</sup> Nanyang Technological University</span><span><sup>4</sup> University of California, Merced</span></p>
+          <p class="author-notes">* Equal contribution &nbsp; † Project lead & correspondence: <a href="mailto:haofei7419@gmail.com">Hao Fei</a></p>
         </div>
-        <figure class="hero-art">
-          <img src="assets/world-lens.svg" width="650" height="640" alt="Four operations connect a video trace to a represented world: reading infers, writing renders, sharing couples, and interacting updates state under actions.">
-          <figcaption>One world. Partial observations. Four operations.</figcaption>
-        </figure>
-      </div>
-      <div class="byline">
-        <p class="authors">Shengqiong Wu<sup>1,*</sup><span>·</span> Meng Luo<sup>2,*</sup><span>·</span> Bobo Li<sup>1</sup><span>·</span> Ziwei Liu<sup>3</sup><span>·</span> Shuicheng Yan<sup>2</sup><span>·</span> Ming-Hsuan Yang<sup>4</sup><span>·</span> Philip Torr<sup>1</sup><span>·</span> Hao Fei<sup>1,†</sup></p>
-        <p class="affiliations"><span><sup>1</sup> University of Oxford</span><span><sup>2</sup> National University of Singapore</span><span><sup>3</sup> Nanyang Technological University</span><span><sup>4</sup> University of California, Merced</span></p>
-        <p class="author-notes">* Equal contribution &nbsp; † Project lead & correspondence: <a href="mailto:haofei7419@gmail.com">Hao Fei</a></p>
+        <div class="cover-actions"><a class="button primary" href="#lens">Read the survey ↓</a><a class="button" href="https://github.com/vid-gen/awesome-video-world-model">GitHub ↗</a><a class="button" href="#library"><span data-total>652</span> references</a></div>
+        <p class="publication-status">Paper forthcoming · Survey overview & reference collection available</p>
+        <figure class="paper-figure cover-figure">
+        <a class="figure-link" href="assets/figures/overview.webp" data-figure data-title="Reading, writing, sharing, and interacting" aria-label="Enlarge: Reading, writing, sharing, and interacting"><img src="assets/figures/overview.webp" width="2600" height="1300" fetchpriority="high" decoding="async" alt="One observed video connects four operations on an underlying world: infer, render, couple, and evolve."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Reading, writing, sharing, and interacting.</strong> One observed video connects four operations on an underlying world: infer, render, couple, and evolve.</figcaption>
+      </figure>
       </div>
     </section>
 
-    <div class="operation-ribbon" aria-label="Four survey operations"><a href="#reading"><span>01</span>Reading <small>Infer</small></a><a href="#writing"><span>02</span>Writing <small>Render</small></a><a href="#sharing"><span>03</span>Sharing <small>Couple</small></a><a href="#interacting"><span>04</span>Interacting <small>Evolve</small></a></div>
-
-    <section class="section-shell lens-section" id="lens" aria-labelledby="lens-title">
-      <div class="section-heading"><p class="eyebrow">01 / The world-modeling lens</p><h2 id="lens-title">The video is a trace.<br><em>The world extends beyond it.</em></h2></div>
-      <div class="lens-copy"><p>A camera records only part of a changing world. Objects leave the frame, actions have delayed effects, and the same place can look different when revisited. A model must reason about what the video shows—and what the underlying state may be.</p><p>This survey brings video comprehension, generation, unified modeling, and video world models into one framework. It asks what each learns about the relation between <strong>observed traces</strong> and <strong>evolving world states</strong>, and what evidence supports that claim.</p></div>
-      <div class="lens-terms"><div><span>V</span><h3>Observed video</h3><p>Partial, lossy, temporally ordered observations of a world.</p></div><div><span>W</span><h3>Latent temporal world</h3><p>Entities, relations, and physical properties evolving over time.</p></div><div><span>s<sub>t</sub></span><h3>Represented state</h3><p>What the model infers and maintains. It can be incomplete or wrong.</p></div></div>
-      <figure class="paper-figure"><a href="assets/survey-overview.png" target="_blank" rel="noopener" aria-label="Open the four-operation overview at full resolution"><img src="assets/survey-overview.png" width="1800" height="900" loading="lazy" alt="The survey overview follows a car passing behind a wall: reading infers its state, writing generates a video, sharing couples both directions, and interacting changes its evolution through controls."></a><figcaption><span>From the survey</span> Video mediates the relation between observed traces and world state. <a href="assets/survey-overview.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
+    <section class="chapter overview-section" id="lens" data-chapter="Overview" aria-labelledby="lens-title">
+      <header class="chapter-heading">
+        <p class="kicker">The world-modeling lens</p>
+        <h2 id="lens-title">A video is a trace of a world.</h2>
+        <p>Video foundation models understand scenes, generate futures, couple perception with creation, and respond to actions. This survey connects these capabilities through the relationship between <strong>observed video</strong> and an <strong>evolving world</strong>.</p>
+      </header>
+      <div class="world-definitions">
+        <div><span class="math-symbol">V</span><h3>Observed video</h3><p>A partial, lossy, temporally ordered record of the world.</p></div>
+        <div><span class="math-symbol">W</span><h3>Latent temporal world</h3><p>Entities, relations, and physical properties evolving over time.</p></div>
+        <div><span class="math-symbol">s<sub>t</sub></span><h3>Represented state</h3><p>What a model infers and maintains. It can be incomplete or wrong.</p></div>
+      </div>
+      <aside class="distinction"><strong>Temporal coherence ≠ world consistency.</strong><p>A car can move smoothly, disappear behind a wall, and return with the wrong identity. A hard camera cut can break visual smoothness while preserving the world. Neither property implies the other.</p></aside>
     </section>
 
-    <section class="consistency-section" aria-labelledby="consistency-title">
-      <div class="section-shell consistency-grid">
-        <div><p class="eyebrow">A distinction that changes the question</p><h2 id="consistency-title">Smooth frames.<br><em>Consistent world?</em></h2><p>Temporal coherence describes local continuity in a video. World consistency asks whether one admissible world trajectory explains the whole trace.</p><p>A car can move smoothly, disappear behind a wall, and return with the wrong identity. Conversely, a hard camera cut can break visual smoothness while preserving the world.</p><p class="small-note">Neither property implies the other.</p></div>
-        <div class="consistency-demo">
-          <div class="demo-caption"><span>Follow the object through occlusion</span><span>Illustrative diagram</span></div>
-          <div class="scene-row"><div class="scene-label">Trace with an identity error<span id="trace-status">Blue car enters</span></div><svg viewBox="0 0 520 116" role="img" aria-label="A car passes behind a wall, then reappears with a different color."><path d="M16 95H504" stroke="#b9c5c8"/><path d="M16 97H504" stroke="#dce4e4" stroke-dasharray="10 10"/><g class="demo-car" id="trace-car" transform="translate(30 0)"><path d="M0 70h13l9-15h31l14 15h13v20H0Z" fill="#06b0f0"/><rect x="26" y="59" width="24" height="11" rx="2" fill="#dff6ff"/><circle cx="17" cy="90" r="8" fill="#142a36"/><circle cx="64" cy="90" r="8" fill="#142a36"/></g><path d="M194 31h138v66H194Z" fill="#e9e4d7" stroke="#c8c2b2"/><path d="M194 53h138M194 75h138M225 31v22m67 0V31M258 53v22m-33 0v22m67 0v22" stroke="#c8c2b2"/><text x="263" y="21" text-anchor="middle" fill="#69777d" font-size="11">OCCLUDED</text></svg></div>
-          <div class="scene-row"><div class="scene-label">Consistent identity<span id="world-status">Blue car enters</span></div><svg viewBox="0 0 520 116" role="img" aria-label="The same blue car passes behind a wall and retains its identity."><path d="M16 95H504" stroke="#b9c5c8"/><path d="M16 97H504" stroke="#dce4e4" stroke-dasharray="10 10"/><g class="demo-car" id="world-car" transform="translate(30 0)"><path d="M0 70h13l9-15h31l14 15h13v20H0Z" fill="#06b0f0"/><rect x="26" y="59" width="24" height="11" rx="2" fill="#dff6ff"/><circle cx="17" cy="90" r="8" fill="#142a36"/><circle cx="64" cy="90" r="8" fill="#142a36"/></g><path d="M194 31h138v66H194Z" fill="#e9e4d7" stroke="#c8c2b2"/><path d="M194 53h138M194 75h138M225 31v22m67 0V31M258 53v22m-33 0v22m67 0v22" stroke="#c8c2b2"/><text x="263" y="21" text-anchor="middle" fill="#69777d" font-size="11">OCCLUDED</text></svg></div>
-          <label class="scrubber-label" for="trace-time">Scrub through time <span id="time-value">0%</span></label><input id="trace-time" type="range" min="0" max="100" value="0" aria-describedby="demo-note"><p id="demo-note">An illustration of identity persistence, not a model output or a complete test of world consistency.</p>
-        </div>
+    <section class="chapter timeline-section" id="timeline" data-chapter="Timeline" aria-labelledby="timeline-title">
+      <header class="chapter-heading">
+        <p class="kicker">The field at a glance · 2017–2026</p>
+        <h2 id="timeline-title">Four paths, a shared world.</h2>
+        <p>Selected milestones in video understanding, generation, shared representations and workflows, and world prediction and control.</p>
+      </header>
+      <figure class="paper-figure timeline-figure">
+        <a class="figure-link" href="assets/figures/timeline.webp" data-figure data-title="The evolution of video foundation models" aria-label="Enlarge: The evolution of video foundation models"><img src="assets/figures/timeline.webp" width="2600" height="3680" loading="lazy" decoding="async" alt="The paper’s original timeline follows the parallel development of Reading, Writing, Sharing, and Interacting. Select the figure to inspect individual milestones."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>The evolution of video foundation models.</strong> The paper’s original timeline follows the parallel development of Reading, Writing, Sharing, and Interacting. Select the figure to inspect individual milestones.</figcaption>
+      </figure>
+      <p class="figure-note">Selected milestones, not an exhaustive history. <a href="#library">Explore the full reference collection →</a></p>
+    </section>
+
+    <div id="operations" class="operations-intro"><p>Four operations on the video–world relationship</p><span>Explore the survey</span></div>
+
+    <section class="chapter operation reading-section" id="reading" data-chapter="Reading" aria-labelledby="reading-title">
+      <header class="chapter-heading operation-heading">
+        <p class="kicker">§4 · Video comprehension</p>
+        <h2 id="reading-title"><img src="assets/icons/reading.svg" width="36" height="36" alt="">Reading the World</h2>
+        <p>Infer semantic, spatial, temporal, physical, and causal properties<br class="wide-only"> from a partial video trace.</p>
+      </header>
+      <figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/reading.webp" data-figure data-title="Video representation learning" aria-label="Enlarge: Video representation learning"><img src="assets/figures/reading.webp" width="2600" height="1547" loading="lazy" decoding="async" alt="Contrastive, masked, predictive, and generative learning construct different supervision targets for video representations."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Video representation learning.</strong> Contrastive, masked, predictive, and generative learning construct different supervision targets for video representations.</figcaption>
+      </figure>
+      <div class="chapter-notes">
+        <div><h3>From recognition to maintained state</h3><p>Video encoders, Video-LLMs, test-time scaling, and video agents offer different ways to gather and retain evidence—from short clips to long, streaming observations.</p></div>
+        <div><h3>What establishes understanding?</h3><p>Does an answer actually depend on the video? Control for text-only, single-frame, shuffled-order, and restricted-context shortcuts.</p></div>
+      </div>
+      <div class="chapter-end"><p>Representation learning · Video-LLMs · Video agents · Applications</p><a href="#library" data-category-link="understanding">Reading literature <span data-count="understanding">151</span> ↗</a></div>
+    </section>
+
+    <section class="chapter operation writing-section" id="writing" data-chapter="Writing" aria-labelledby="writing-title">
+      <header class="chapter-heading operation-heading">
+        <p class="kicker">§5 · Video generation</p>
+        <h2 id="writing-title"><img src="assets/icons/writing.svg" width="36" height="36" alt="">Writing the World</h2>
+        <p>Render a video trace from a partial specification:<br class="wide-only"> text, images, audio, motion, or other conditions.</p>
+      </header>
+      <div class="figure-gallery" data-gallery>
+      <div class="figure-tabs" aria-label="Writing figures">
+        <a href="#writing-models" data-figure-tab="writing-models">Generative models</a>
+        <a href="#writing-latents" data-figure-tab="writing-latents">Latent representations</a>
+        <a href="#writing-planning" data-figure-tab="writing-planning">Planning & agents</a>
+        <a href="#writing-control" data-figure-tab="writing-control">Control mechanisms</a>
+      </div>
+      <div id="writing-models" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/writing-models.webp" data-figure data-title="Generative models" aria-label="Enlarge: Generative models"><img src="assets/figures/writing-models.webp" width="2600" height="1662" loading="lazy" decoding="async" alt="Diffusion and flow matching operate over video latents; autoregressive modeling follows an ordered sequence, while masked prediction fills selected positions from context."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Generative models.</strong> Diffusion and flow matching operate over video latents; autoregressive modeling follows an ordered sequence, while masked prediction fills selected positions from context.</figcaption>
+      </figure></div>
+      <div id="writing-latents" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/writing-latents.webp" data-figure data-title="Latent representations" aria-label="Enlarge: Latent representations"><img src="assets/figures/writing-latents.webp" width="2600" height="1735" loading="lazy" decoding="async" alt="Continuous, discrete, hybrid, and semantically aligned designs shape compression, reconstruction, sequence modeling, and unification with understanding."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Latent representations.</strong> Continuous, discrete, hybrid, and semantically aligned designs shape compression, reconstruction, sequence modeling, and unification with understanding.</figcaption>
+      </figure></div>
+      <div id="writing-planning" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/writing-planning.webp" data-figure data-title="Planning & agents" aria-label="Enlarge: Planning & agents"><img src="assets/figures/writing-planning.webp" width="2600" height="831" loading="lazy" decoding="async" alt="LLMs and MLLMs plan for visual generators; agentic systems connect scripting, generation, evaluation, and revision through a controller."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Planning & agents.</strong> LLMs and MLLMs plan for visual generators; agentic systems connect scripting, generation, evaluation, and revision through a controller.</figcaption>
+      </figure></div>
+      <div id="writing-control" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/writing-control.webp" data-figure data-title="Control mechanisms" aria-label="Enlarge: Control mechanisms"><img src="assets/figures/writing-control.webp" width="2600" height="1734" loading="lazy" decoding="async" alt="Control enters through inputs, attention maps, latent states, block features, parameters and embeddings, or the sampling update."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Control mechanisms.</strong> Control enters through inputs, attention maps, latent states, block features, parameters and embeddings, or the sampling update.</figcaption>
+      </figure></div>
+      </div>
+      <div class="chapter-notes">
+        <div><h3>From conditions to trajectories</h3><p>A prompt fixes only part of a scene. A generator resolves the remaining appearance, motion, and events while preserving the identities and constraints the condition supplies.</p></div>
+        <div><h3>More than plausible frames</h3><p>Does the trace follow the condition, maintain a consistent world, and support its intended use? Visual quality alone does not establish these properties.</p></div>
+      </div>
+      <div class="chapter-end"><p>Representations · Generative models · Control · Editing & applications</p><a href="#library" data-category-link="generation">Writing literature <span data-count="generation">122</span> ↗</a></div>
+    </section>
+
+    <section class="chapter operation sharing-section" id="sharing" data-chapter="Sharing" aria-labelledby="sharing-title">
+      <header class="chapter-heading operation-heading">
+        <p class="kicker">§6 · Unified video models</p>
+        <h2 id="sharing-title"><img src="assets/icons/sharing.svg" width="36" height="36" alt="">Sharing the World</h2>
+        <p>Couple understanding and generation through common<br class="wide-only"> representations, parameters, interfaces, or objectives.</p>
+      </header>
+      <div class="figure-gallery" data-gallery>
+      <div class="figure-tabs" aria-label="Sharing figures">
+        <a href="#sharing-architectures" data-figure-tab="sharing-architectures">Unified architectures</a>
+        <a href="#sharing-learning" data-figure-tab="sharing-learning">Learning paradigms</a>
+      </div>
+      <div id="sharing-architectures" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/sharing-architectures.webp" data-figure data-title="Unified architectures" aria-label="Enlarge: Unified architectures"><img src="assets/figures/sharing-architectures.webp" width="2600" height="1782" loading="lazy" decoding="async" alt="Discrete tokens, continuous latents, modular semantic bridges, and agentic task states provide four places for understanding and generation to meet."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Unified architectures.</strong> Discrete tokens, continuous latents, modular semantic bridges, and agentic task states provide four places for understanding and generation to meet.</figcaption>
+      </figure></div>
+      <div id="sharing-learning" data-figure-panel><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/sharing-learning.webp" data-figure data-title="Learning paradigms" aria-label="Enlarge: Learning paradigms"><img src="assets/figures/sharing-learning.webp" width="2600" height="1525" loading="lazy" decoding="async" alt="Isolated, dual, co-learning, and synergistic learning differ in how they connect the two directions. These paradigms can coexist."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Learning paradigms.</strong> Isolated, dual, co-learning, and synergistic learning differ in how they connect the two directions. These paradigms can coexist.</figcaption>
+      </figure></div>
+      </div>
+      <div class="chapter-notes">
+        <div><h3>Coverage, sharing, synergy</h3><p>Supporting both tasks is capability coverage. Sharing machinery is an architectural claim. Demonstrating that the directions improve one another requires controlled evidence.</p></div>
+        <div><h3>Isolate the benefit of coupling</h3><p>Compare reading and writing with matched data, capacity, compute, and supervision. Test whether cross-direction information flow actually improves either task.</p></div>
+      </div>
+      <div class="chapter-end"><p>Unified architectures · Joint learning · Editing · Generative reasoning</p><a href="#library" data-category-link="unified">Sharing literature <span data-count="unified">60</span> ↗</a></div>
+    </section>
+
+    <section class="chapter operation interacting-section" id="interacting" data-chapter="Interacting" aria-labelledby="interacting-title">
+      <span id="world-models" class="anchor-alias"></span>
+      <header class="chapter-heading operation-heading">
+        <p class="kicker">§7 · Video world models</p>
+        <h2 id="interacting-title"><img src="assets/icons/interacting.svg" width="36" height="36" alt="">Interacting with the World</h2>
+        <p>Model how an established state evolves—and how actions,<br class="wide-only"> controls, and new observations change that evolution.</p>
+      </header>
+      <figure class="paper-figure taxonomy-figure">
+        <a class="figure-link" href="assets/figures/interacting.webp" data-figure data-title="A 2 × 3 taxonomy of video world models" aria-label="Enlarge: A 2 × 3 taxonomy of video world models"><img src="assets/figures/interacting.webp" width="2600" height="1838" loading="lazy" decoding="async" alt="Prediction space (observations or latent states) crosses transition interface (passive, action-conditioned, or interactive). The same model can occupy different cells in different training and use settings."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>A 2 × 3 taxonomy of video world models.</strong> Prediction space (observations or latent states) crosses transition interface (passive, action-conditioned, or interactive). The same model can occupy different cells in different training and use settings.</figcaption>
+      </figure>
+      <div class="chapter-notes">
+        <div><h3>What is predicted?</h3><p>Observation-space models predict frames, video tokens, or video-decoding latents. Latent-state models predict video-derived features without required rendering.</p></div>
+        <div><h3>When can we intervene?</h3><p>Passive prediction has no action input. Action-conditioned prediction fixes controls beforehand. Interactive prediction accepts new controls after feedback.</p></div>
+      </div>
+      <p class="figure-note">“Interactive” describes the control interface, not the attention pattern. Video-decoding latents still belong to observation space.</p>
+      <div class="chapter-end"><p>Control · Memory · Responsiveness · Physical grounding · Planning</p><a href="#library" data-category-link="world-models">Interacting literature <span data-count="world-models">114</span> ↗</a></div>
+    </section>
+
+    <section class="chapter evidence-section" id="evidence" data-chapter="Evidence" aria-labelledby="evidence-title">
+      <header class="chapter-heading"><p class="kicker">Across the four operations</p><h2 id="evidence-title">From plausible output to useful decisions.</h2><p>Stronger world-modeling claims need stronger evidence.</p></header>
+      <ol class="evidence-steps">
+        <li><span>01</span><h3>Plausible output</h3><p>Credible answers, frames, or features on the immediate task.</p></li>
+        <li><span>02</span><h3>Faithful conditions</h3><p>Dependence on observed evidence and supplied controls.</p></li>
+        <li><span>03</span><h3>Consistent state</h3><p>Persistent identity, layout, and physics; controlled transfer for sharing.</p></li>
+        <li><span>04</span><h3>Decision utility</h3><p>Improved planning, policy learning, or policy evaluation.</p></li>
+      </ol>
+      <p class="centered-link"><a href="#library" data-category-link="evaluation">Datasets, benchmarks & evaluation →</a></p>
+    </section>
+
+    <section class="chapter questions-section" id="questions" data-chapter="Open questions" aria-labelledby="questions-title">
+      <header class="chapter-heading"><p class="kicker">§8 · Open challenges & future directions</p><h2 id="questions-title">What remains to be understood?</h2><p>Seven challenges connect better methods with evidence of why they work.</p></header>
+      <div class="challenge-list">
+        <details open><summary><span class="challenge-number">01</span><h3>Long-horizon world consistency</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Memory must track how hidden state evolves, not only retrieve what was last visible.</p><h4>A useful test</h4><p>Vary rollout length and revisit distance separately; report degradation alongside memory, latency, and action-update rate.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-1.webp" data-figure data-title="Long-horizon world consistency" aria-label="Enlarge: Long-horizon world consistency"><img src="assets/figures/challenge-1.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Hidden state evolves during occlusion; replaying an old observation can miss that change."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Long-horizon world consistency.</strong> Hidden state evolves during occlusion; replaying an old observation can miss that change.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">02</span><h3>Physical and causal grounding</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Changing an action or physical parameter should change the relevant outcome while leaving unrelated state intact.</p><h4>A useful test</h4><p>Compare paired interventions from the same initial state; locate the first violated constraint and when it appears.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-2.webp" data-figure data-title="Physical and causal grounding" aria-label="Enlarge: Physical and causal grounding"><img src="assets/figures/challenge-2.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Changing gravity alters the trajectory while unrelated scene properties remain fixed."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Physical and causal grounding.</strong> Changing gravity alters the trajectory while unrelated scene properties remain fixed.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">03</span><h3>Measurable synergy in unified models</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Doing both tasks does not establish that understanding and generation improve one another.</p><h4>A useful test</h4><p>Compare coupled and uncoupled systems under matched data, capacity, compute, and supervision.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-3.webp" data-figure data-title="Measurable synergy in unified models" aria-label="Enlarge: Measurable synergy in unified models"><img src="assets/figures/challenge-3.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Two systems with matched resources differ only in whether information passes between understanding and generation."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Measurable synergy in unified models.</strong> Two systems with matched resources differ only in whether information passes between understanding and generation.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">04</span><h3>Standardized evaluation of world properties</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Benchmarks use different conditions, horizons, and output spaces, so headline scores are difficult to compare.</p><h4>A useful test</h4><p>Align state properties and interventions across operations; report the protocol, budget, failures, and downstream effects.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-4.webp" data-figure data-title="Standardized evaluation of world properties" aria-label="Enlarge: Standardized evaluation of world properties"><img src="assets/figures/challenge-4.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Video and feature predictions need different probes, but both face the same decision test."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Standardized evaluation of world properties.</strong> Video and feature predictions need different probes, but both face the same decision test.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">05</span><h3>Scaling control from unlabeled video</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Videos show motion but often omit the actions, units, and coordinate systems that caused it.</p><h4>A useful test</h4><p>Assess whether inferred controls predict interventions and transfer to a declared action interface, beyond passive reconstruction.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-5.webp" data-figure data-title="Scaling control from unlabeled video" aria-label="Enlarge: Scaling control from unlabeled video"><img src="assets/figures/challenge-5.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Action effects mix with camera and background motion."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Scaling control from unlabeled video.</strong> Action effects mix with camera and background motion.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">06</span><h3>Generalization across scenes and embodiments</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Different cameras, bodies, and action spaces can turn an apparently reusable model into a setting-specific solution.</p><h4>A useful test</h4><p>Separate held-out scenes from held-out embodiments and evaluate their combinations under stated adaptation budgets.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-6.webp" data-figure data-title="Generalization across scenes and embodiments" aria-label="Enlarge: Generalization across scenes and embodiments"><img src="assets/figures/challenge-6.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="A held-out scene–body pair tests whether familiar factors compose while preserving action effects."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Generalization across scenes and embodiments.</strong> A held-out scene–body pair tests whether familiar factors compose while preserving action effects.</figcaption>
+      </figure></div></details>
+        <details ><summary><span class="challenge-number">07</span><h3>Stochastic worlds and rare events</h3><span class="expand-sign" aria-hidden="true"></span></summary><div class="challenge-content"><div><p>Rendering a rare event does not establish how likely it is. Diverse samples can still put probability mass in the wrong places.</p><h4>A useful test</h4><p>Use calibration, proper scoring rules, and valid-mode coverage at fixed sample budgets; report invalid outcomes separately.</p></div><figure class="paper-figure ">
+        <a class="figure-link" href="assets/figures/challenge-7.webp" data-figure data-title="Stochastic worlds and rare events" aria-label="Enlarge: Stochastic worlds and rare events"><img src="assets/figures/challenge-7.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Valid futures differ in frequency, and invalid and unreadable samples must be counted separately."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
+        <figcaption><strong>Stochastic worlds and rare events.</strong> Valid futures differ in frequency, and invalid and unreadable samples must be counted separately.</figcaption>
+      </figure></div></details>
       </div>
     </section>
 
-    <section class="section-shell operations-section" id="operations" aria-labelledby="operations-title">
-      <div class="section-heading split-heading"><div><p class="eyebrow">02 / Four operations</p><h2 id="operations-title">Four ways to connect<br><em>video and world.</em></h2></div><p>These are complementary operations, not a ranking of models. One system can read, write, share, and interact.</p></div>
-      <nav class="operation-tabs" aria-label="Explore an operation"><a href="#reading" data-operation="reading" class="active" aria-current="true"><span>01</span>Reading <b>V → W</b></a><a href="#writing" data-operation="writing"><span>02</span>Writing <b>W → V</b></a><a href="#sharing" data-operation="sharing"><span>03</span>Sharing <b>V ↔ W</b></a><a href="#interacting" data-operation="interacting"><span>04</span>Interacting <b>W ↻</b></a></nav>
-      <article class="operation-panel" id="reading" data-color="reading">
-        <div class="operation-intro"><p class="eyebrow">Video comprehension · §4</p><h3>Reading the world</h3><p>Infer content, structure, dynamics, physics, and causality from a partial video trace.</p><a class="text-link" href="#library" data-category-link="understanding">Explore reading literature <span aria-hidden="true">↗</span></a></div>
-        <div class="operation-body"><h4>From recognition to maintained state</h4><p>Which entities are present? Where are they? How do they change—and what caused that change? Video encoders, Video-LLMs, and agents provide different ways to gather and retain this evidence.</p><ul class="topic-list"><li>Semantic, spatial, temporal, physical, and causal understanding</li><li>Contrastive, masked, predictive, and generative representation learning</li><li>Video-language modeling, test-time scaling, and video agents</li><li>Embodied perception, driving, and domain-specific analysis</li></ul><div class="evidence-note"><b>The evaluation question</b><p>Does the answer actually depend on the video? Control for text-only, single-frame, shuffled-order, and restricted-context shortcuts.</p></div><p class="representatives">Entry points <a href="https://arxiv.org/abs/2203.12602">VideoMAE ↗</a><a href="https://doi.org/10.1007/978-3-031-73013-9_23">InternVideo2 ↗</a><a href="https://arxiv.org/abs/2511.21631">Qwen3-VL ↗</a></p></div>
-      </article>
-      <article class="operation-panel" id="writing" data-color="writing">
-        <div class="operation-intro"><p class="eyebrow">Video generation · §5</p><h3>Writing the world</h3><p>Render a new video trace from a partial specification: text, images, audio, motion, or other conditions.</p><a class="text-link" href="#library" data-category-link="generation">Explore writing literature <span aria-hidden="true">↗</span></a></div>
-        <div class="operation-body"><h4>From a condition to a visual trajectory</h4><p>A prompt fixes only part of a scene. The generator resolves the remaining appearance, motion, and events while preserving the identities and constraints the condition supplies.</p><ul class="topic-list"><li>Text-, image-, video-, audio-, and motion-conditioned generation</li><li>Continuous latents, discrete tokens, and hybrid representations</li><li>Diffusion, autoregressive, masked, flow, and agentic generation</li><li>Control, editing, character animation, and synthetic training data</li></ul><div class="evidence-note"><b>The evaluation question</b><p>Does the trace follow the condition, keep the world consistent, and support its intended use—not merely look plausible?</p></div><p class="representatives">Entry points <a href="https://arxiv.org/abs/2503.20314">Wan ↗</a><a href="https://arxiv.org/abs/2412.03603">HunyuanVideo ↗</a><a href="https://arxiv.org/abs/2505.12705">DreamGen ↗</a></p></div>
-      </article>
-      <article class="operation-panel" id="sharing" data-color="sharing">
-        <div class="operation-intro"><p class="eyebrow">Unified video models · §6</p><h3>Sharing the world</h3><p>Couple understanding and generation through common representations, parameters, interfaces, or objectives.</p><a class="text-link" href="#library" data-category-link="unified">Explore sharing literature <span aria-hidden="true">↗</span></a></div>
-        <div class="operation-body"><h4>From coexisting capabilities to measurable synergy</h4><p>A system that both understands and generates video covers two directions. Sharing machinery is a further claim; demonstrating that the directions improve one another requires controlled evidence.</p><ul class="topic-list"><li>Discrete-token, continuous-latent, modular, and agentic architectures</li><li>Isolated, dual, co-learning, and synergistic learning</li><li>Instruction-driven editing and generative reasoning</li><li>Per-direction, interleaved, and cross-direction evaluation</li></ul><div class="evidence-note"><b>The evaluation question</b><p>Does information flow improve reading or writing when data, capacity, and compute are matched?</p></div><p class="representatives">Entry points <a href="https://arxiv.org/abs/2409.18869">Emu3 ↗</a><a href="https://arxiv.org/abs/2506.15564">Show-o2 ↗</a><a href="https://arxiv.org/abs/2510.08377">UniVideo ↗</a></p></div>
-      </article>
-      <article class="operation-panel" id="interacting" data-color="interacting">
-        <div class="operation-intro"><p class="eyebrow">Video world models · §7</p><h3>Interacting with the world</h3><p>Model how an established state evolves and how actions, controls, or new observations change that evolution.</p><a class="text-link" href="#library" data-category-link="world-models">Explore interacting literature <span aria-hidden="true">↗</span></a></div>
-        <div class="operation-body"><h4>From a plausible clip to a responsive world</h4><p>Rollout exposes what a single clip can hide. Generated errors feed back into context; out-of-view content must persist; actions must have their intended effects.</p><ul class="topic-list"><li>Observation-space and latent-state prediction</li><li>Passive, action-conditioned, and interactive transition interfaces</li><li>Controllability, memory, responsiveness, and physical grounding</li><li>Data engines, policy learning, evaluation, planning, and simulation</li></ul><div class="evidence-note"><b>The evaluation question</b><p>Do transitions follow controls, preserve state through interventions, and improve decisions or downstream learning?</p></div><p class="representatives">Entry points <a href="https://arxiv.org/abs/2402.15391">Genie ↗</a><a href="https://arxiv.org/abs/2506.09985">V-JEPA 2 ↗</a><a href="https://arxiv.org/abs/2504.12369">WorldMem ↗</a></p></div>
-      </article>
-      <p class="section-footnote">V → W and W → V are shorthand: reading estimates world properties; writing receives only a partial specification. They are not exact inverses.</p>
-    </section>
-
-    <section class="world-section" id="world-models" aria-labelledby="world-title"><div class="section-shell">
-      <div class="section-heading split-heading"><div><p class="eyebrow">03 / A map of video world models</p><h2 id="world-title">What is predicted?<br><em>When can we intervene?</em></h2></div><p>Two independent axes give six settings. A model's placement depends on its training and use; the same model can occupy more than one cell.</p></div>
-      <div class="taxonomy-scroll" role="region" aria-label="World-model taxonomy, scroll horizontally on small screens" tabindex="0"><table class="taxonomy"><caption>Prediction space × transition interface</caption><thead><tr><th scope="col">Prediction space</th><th scope="col"><span>01</span> Passive<small>No explicit action input</small></th><th scope="col"><span>02</span> Action-conditioned<small>Controls fixed before prediction</small></th><th scope="col"><span>03</span> Interactive<small>New controls after feedback</small></th></tr></thead><tbody><tr><th scope="row">Observation space<small>Frames, video tokens, or video-decoding latents</small></th><td><b>Forecast video</b><p>Predict a visual continuation from an observed history.</p><span>Video history → future video</span></td><td><b>Predict controlled video</b><p>Generate the outcome of a supplied control sequence.</p><a href="https://arxiv.org/abs/2309.17080">GAIA-1 ↗</a></td><td><b>Advance a visual world</b><p>Accept a new action after each returned frame or chunk.</p><a href="https://arxiv.org/abs/2402.15391">Genie ↗</a></td></tr><tr><th scope="row">Latent state<small>Video-derived features without required rendering</small></th><td><b>Predict masked features</b><p>Infer target features from context; targets need not all be future frames.</p><a href="https://arxiv.org/abs/2506.09985">V-JEPA 2 pretraining ↗</a></td><td><b>Roll out candidate features</b><p>Score fixed candidate actions through predicted feature trajectories.</p><a href="https://arxiv.org/abs/2411.04983">DINO-WM ↗</a></td><td><b>Plan, act, and replan</b><p>Execute an action, observe again, encode, and update the next plan.</p><a href="https://arxiv.org/abs/2411.04983">DINO-WM in model-predictive control ↗</a></td></tr></tbody></table></div>
-      <p class="section-footnote">Predicting generative latents that are decoded into video still belongs to observation space. “Interactive” describes when controls enter the loop, not the attention pattern.</p>
-    </div></section>
-
-    <section class="section-shell evidence-section" id="evidence" aria-labelledby="evidence-title"><div class="section-heading"><p class="eyebrow">04 / The evidence ladder</p><h2 id="evidence-title">Stronger claims need<br><em>stronger evidence.</em></h2><p>Across all four operations, visual plausibility is a starting point. State consistency and decision utility need additional tests.</p></div><ol class="evidence-ladder"><li><span class="step-number">01</span><div><h3>Plausible output</h3><p>Are answers, generated frames, or predicted features credible on the immediate task?</p></div></li><li><span class="step-number">02</span><div><h3>Faithful to evidence or conditions</h3><p>Do answers depend on observed evidence? Do outputs respect the supplied text, reference, motion, or action?</p></div></li><li><span class="step-number">03</span><div><h3>Consistent state and controlled transfer</h3><p>Test identity, layout, physics, occlusion, and interventions. For sharing, isolate cross-direction transfer under matched resources.</p></div></li><li><span class="step-number">04</span><div><h3>Decision utility</h3><p>Do the representations, generated data, or rollouts improve planning, policy training, or policy evaluation?</p></div></li></ol><a class="text-link" href="#library" data-category-link="evaluation">Explore datasets, benchmarks & evaluation <span aria-hidden="true">↗</span></a></section>
-
-    <section class="questions-section" id="questions" aria-labelledby="questions-title"><div class="section-shell questions-grid"><div class="questions-intro"><p class="eyebrow">05 / Open questions</p><h2 id="questions-title">What would move<br><em>the field forward?</em></h2><p>Seven challenges connect better methods with tests that can reveal why they work.</p><p class="questions-thesis">Observational scale shows what co-occurs.<br><strong>Interventions show what changes what.</strong></p></div><div class="question-list">
-      <details open><summary><span>01</span> Long-horizon world consistency</summary><div><p>Memory must track how hidden state evolves, not only retrieve what was last visible.</p><p><b>A useful test:</b> vary rollout length and revisit distance separately; report degradation alongside memory, latency, and action-update rate.</p></div></details>
-      <details><summary><span>02</span> Physical and causal grounding</summary><div><p>Changing an action or physical parameter should change the relevant outcome while leaving unrelated state intact.</p><p><b>A useful test:</b> paired interventions from the same initial state; locate the first violated constraint and when it appears.</p></div></details>
-      <details><summary><span>03</span> Measurable synergy in unified models</summary><div><p>Doing both tasks does not establish that understanding and generation improve one another.</p><p><b>A useful test:</b> compare coupled and uncoupled systems under matched data, capacity, compute, and supervision.</p></div></details>
-      <details><summary><span>04</span> Standardized evaluation of world properties</summary><div><p>Benchmarks use different conditions, horizons, and output spaces, so headline scores are difficult to compare.</p><p><b>A useful test:</b> align state properties and interventions across operations and report the protocol, budget, failures, and downstream effects.</p></div></details>
-      <details><summary><span>05</span> Scaling control from unlabeled video</summary><div><p>Videos show motion but often omit the actions, units, and coordinate systems that caused it.</p><p><b>A useful test:</b> assess whether inferred controls predict interventions and transfer to a declared action interface, beyond passive reconstruction.</p></div></details>
-      <details><summary><span>06</span> Generalization across scenes and embodiments</summary><div><p>Different cameras, bodies, and action spaces can turn an apparently reusable model into a setting-specific solution.</p><p><b>A useful test:</b> separate held-out scenes from held-out embodiments and evaluate their combinations under stated adaptation budgets.</p></div></details>
-      <details><summary><span>07</span> Stochastic worlds and rare events</summary><div><p>Rendering a rare event does not establish how likely it is. Diverse samples can still put probability mass in the wrong places.</p><p><b>A useful test:</b> use calibration, proper scoring rules, and valid-mode coverage at fixed sample budgets; report invalid outcomes separately.</p></div></details>
-    </div></div></section>
-
-    <section class="section-shell library-section" id="library" aria-labelledby="library-title">
-      <div class="section-heading split-heading"><div><p class="eyebrow">06 / The open literature</p><h2 id="library-title">Find your<br><em>next reference.</em></h2></div><div class="library-intro"><p><strong data-total>652</strong> works across video understanding, generation, unified modeling, world models, evaluation, and foundations.</p><a href="https://github.com/vid-gen/awesome-video-world-model#contents">Read the complete list on GitHub ↗</a></div></div>
+    <section class="chapter library-section" data-chapter="Literature" id="library" aria-labelledby="library-title">
+      <header class="chapter-heading"><p class="kicker">The reference collection</p><h2 id="library-title">Explore the literature</h2><p>Search <strong data-total>652</strong> works across the four operations, evaluation, and foundations.<br>Prefer a reading list? <a href="https://github.com/vid-gen/awesome-video-world-model#literature">Browse the complete collection on GitHub ↗</a></p></header>
       <div class="library-tools" id="library-tools" hidden>
         <form id="search-form" role="search"><label for="search">Search titles, authors, venues, or citation keys</label><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Try “spatial memory”, “Genie”, or “V-JEPA”…" autocomplete="off"><button type="button" id="clear-search" aria-label="Clear search">×</button></div></form>
         <div class="library-categories" role="group" aria-label="Filter by research area"><button type="button" data-category="all" aria-pressed="true">All <span data-count="all">652</span></button><button type="button" data-category="understanding" aria-pressed="false">Reading <span data-count="understanding">151</span></button><button type="button" data-category="generation" aria-pressed="false">Writing <span data-count="generation">122</span></button><button type="button" data-category="unified" aria-pressed="false">Sharing <span data-count="unified">60</span></button><button type="button" data-category="world-models" aria-pressed="false">Interacting <span data-count="world-models">114</span></button><button type="button" data-category="evaluation" aria-pressed="false">Evaluation <span data-count="evaluation">184</span></button><button type="button" data-category="background" aria-pressed="false">Foundations <span data-count="background">21</span></button></div>
@@ -124,9 +253,24 @@
       <p class="library-note">Each work is listed once in its primary research area. Publication years and venues follow the cited records; a preprint year can differ from its later publication. Updated October 14, 2026.</p>
     </section>
 
-    <section class="publication-section section-shell" id="publication" aria-labelledby="publication-title"><div><p class="eyebrow">The survey</p><h2 id="publication-title">Continue the<br><em>conversation.</em></h2><p>The manuscript is forthcoming. The framework, overview, and reference collection are available here.</p></div><div class="publication-links"><a href="https://github.com/vid-gen/awesome-video-world-model"><span>Explore the repository</span><b>GitHub ↗</b></a><a href="references.bib" download><span>Use the reference collection</span><b>Download BibTeX ↓</b></a><a href="https://github.com/vid-gen/awesome-video-world-model/issues/new?template=new-paper.yml"><span>Help improve the collection</span><b>Suggest a paper ↗</b></a></div></section>
+
+    <section class="chapter publication-section" id="publication" aria-labelledby="publication-title">
+      <p class="kicker">An open research collection</p>
+      <h2 id="publication-title">Keep exploring.</h2>
+      <p>The manuscript is forthcoming. The survey overview and reference collection are available now.</p>
+      <div class="cover-actions"><a class="button primary" href="https://github.com/vid-gen/awesome-video-world-model">Explore GitHub ↗</a><a class="button" href="references.bib" download>Download BibTeX ↓</a><a class="button" href="https://github.com/vid-gen/awesome-video-world-model/issues/new?template=new-paper.yml">Suggest a paper ↗</a></div>
+    </section>
   </main>
-  <footer class="section-shell"><a class="brand" href="#top"><img src="assets/mark.svg" width="28" height="28" alt=""><span>Video <b>↔</b> World</span></a><p>Reading. Writing. Sharing. Interacting.</p><a href="#top">Back to top ↑</a></footer>
-  <dialog id="bib-dialog" aria-labelledby="bib-title"><div class="dialog-heading"><h2 id="bib-title">BibTeX reference</h2><button type="button" id="close-bib" aria-label="Close BibTeX dialog">×</button></div><p id="bib-paper-title"></p><pre id="bib-content" tabindex="0"></pre><div class="dialog-actions"><button type="button" class="button primary" id="copy-bib">Copy BibTeX</button><span id="copy-status" role="status" aria-live="polite"></span></div></dialog>
+  <footer><a class="wordmark" href="#top">Video <span>↔</span> World</a><p>Reading · Writing · Sharing · Interacting</p><a href="#top">Back to top ↑</a></footer>
+  <div class="reading-progress" aria-hidden="true"><span id="current-chapter">Title</span><span id="chapter-position">01 / 10</span></div>
+  <dialog id="figure-dialog" class="figure-dialog" aria-labelledby="figure-title">
+    <div class="figure-dialog-toolbar"><h2 id="figure-title">Survey figure</h2><div><button type="button" id="zoom-figure" aria-pressed="false">Zoom in</button><a id="original-figure" target="_blank" rel="noopener">Open original ↗</a><button type="button" id="close-figure" aria-label="Close figure">×</button></div></div>
+    <div class="figure-viewport" tabindex="0" aria-label="Figure viewer; scroll to explore when zoomed"><img id="expanded-figure" alt=""></div>
+    <p class="figure-dialog-note">Original survey artwork · Zoom in to inspect labels · Esc to close</p>
+  </dialog>
+  <dialog id="bib-dialog" aria-labelledby="bib-title">
+    <div class="dialog-heading"><h2 id="bib-title">BibTeX reference</h2><button type="button" id="close-bib" aria-label="Close BibTeX dialog">×</button></div>
+    <p id="bib-paper-title"></p><pre id="bib-content" tabindex="0"></pre><div class="dialog-actions"><button type="button" class="button primary" id="copy-bib">Copy BibTeX</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+  </dialog>
 </body>
 </html>
