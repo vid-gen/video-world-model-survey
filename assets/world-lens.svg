@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 640" fill="none">
+ <defs>
+  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" stroke="#dfe7df" stroke-width=".6"/></pattern>
+  <radialGradient id="fade"><stop stop-color="#eff4eb"/><stop offset="1" stop-color="#fafbf8" stop-opacity="0"/></radialGradient>
+  <linearGradient id="floor" x1="200" y1="200" x2="430" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#e6efe5"/><stop offset="1" stop-color="#eff2e9"/></linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06b0f0"/><stop offset="1" stop-color="#137f9b"/></linearGradient>
+  <marker id="amber" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="m0 0 8 4-8 4Z" fill="#c88e00"/></marker>
+  <marker id="blue" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="m0 0 8 4-8 4Z" fill="#06b0f0"/></marker>
+  <marker id="purple" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="m0 0 8 4-8 4Z" fill="#a86fc1"/></marker>
+ </defs>
+ <ellipse cx="336" cy="300" rx="314" ry="300" fill="url(#fade)"/>
+ <circle cx="329" cy="302" r="229" stroke="#dfe7df"/><circle cx="329" cy="302" r="271" stroke="#e7ece4" stroke-dasharray="2 7"/>
+ <circle cx="329" cy="302" r="192" fill="url(#grid)"/>
+ <path d="m145 320 184-106 184 106-184 107Z" fill="#d8e3d7"/>
+ <path d="m145 310 184-106 184 106-184 107Z" fill="url(#floor)" stroke="#8fa79a" stroke-width="1.2"/>
+ <path d="m182 289 184 106m-147-127 184 106m-147-127 184 106m-147-127 184 106m-111-106L182 331m221-85L219 353m221-85L256 374m221-85L293 396" stroke="#c2d4c4" stroke-width=".8"/>
+ <path d="M145 310v10l184 107 184-107v-10" stroke="#8fa79a" stroke-width="1.2"/>
+ <ellipse cx="261" cy="294" rx="44" ry="20" fill="#8a9a8d" opacity=".09"/>
+ <path d="m225 254 40-23 40 23-40 23Z" fill="#ffd96c" stroke="#bd931f"/>
+ <path d="M225 254v48l40 23v-48Z" fill="#ffbf00" stroke="#bd931f"/>
+ <path d="M265 277v48l40-23v-48Z" fill="#e6ac14" stroke="#bd931f"/>
+ <path d="M326 348c20-31 34-36 66-39 27-2 39-11 48-29" stroke="#a9bcb0" stroke-dasharray="4 5"/>
+ <ellipse cx="392" cy="311" rx="35" ry="18" fill="#93bfb6" opacity=".2"/>
+ <circle cx="388" cy="280" r="29" fill="url(#glass)"/><ellipse cx="379" cy="269" rx="10" ry="7" fill="#e0faff" opacity=".5"/>
+ <ellipse cx="339" cy="332" rx="21" ry="11" stroke="#6694a3" stroke-dasharray="3 4"/>
+ <path d="m339 318 0-11m-7 16 7-7 7 7" stroke="#6694a3"/>
+ <path d="M324 220v-44m0 0 7 8m-7-8-7 8" stroke="#869b8b"/>
+ <g font-family="Arial,Helvetica,sans-serif" fill="#142a36">
+  <text x="324" y="136" text-anchor="middle" font-size="10" letter-spacing="2">LATENT TEMPORAL WORLD</text>
+  <text x="324" y="166" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-style="italic">W</text>
+ </g>
+ <path d="M183 472C56 414 84 281 167 259" stroke="#c88e00" stroke-width="2" marker-end="url(#amber)"/>
+ <path d="M501 280c88 40 72 146-10 192" stroke="#06b0f0" stroke-width="2" marker-end="url(#blue)"/>
+ <path d="M395 201c86-63 94-107 16-103-41 2-60 31-53 49" stroke="#a86fc1" stroke-width="2" marker-end="url(#purple)"/>
+ <path d="M325 422v49" stroke="#3b9f68" stroke-width="2"/><path d="m320 427 5-5 5 5m-10 39 5 5 5-5" stroke="#3b9f68" stroke-width="2"/>
+ <g font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#142a36">
+  <rect x="38" y="357" width="118" height="32" rx="16" fill="#fff0bc" stroke="#f0df9d"/><circle cx="56" cy="373" r="4" fill="#ffbf00"/><text x="69" y="377">Reading</text>
+  <rect x="485" y="357" width="120" height="32" rx="16" fill="#e2f6ff" stroke="#bae4f3"/><circle cx="503" cy="373" r="4" fill="#06b0f0"/><text x="516" y="377">Writing</text>
+  <rect x="270" y="439" width="112" height="29" rx="14.5" fill="#dff8e7" stroke="#b7e9cb"/><circle cx="288" cy="454" r="4" fill="#63d391"/><text x="301" y="458">Sharing</text>
+  <rect x="393" y="100" width="133" height="32" rx="16" fill="#f0e1f5" stroke="#d9c1e4"/><circle cx="411" cy="116" r="4" fill="#cd93e3"/><text x="424" y="120">Interacting</text>
+ </g>
+ <path d="m218 478 46-146m172 146-57-137" stroke="#a3b4a6" stroke-dasharray="4 5" opacity=".7"/>
+ <rect x="131" y="480" width="391" height="88" rx="8" fill="#142a36"/>
+ <g fill="#526766"><rect x="143" y="485" width="11" height="5" rx="1"/><rect x="174" y="485" width="11" height="5" rx="1"/><rect x="205" y="485" width="11" height="5" rx="1"/><rect x="236" y="485" width="11" height="5" rx="1"/><rect x="267" y="485" width="11" height="5" rx="1"/><rect x="298" y="485" width="11" height="5" rx="1"/><rect x="329" y="485" width="11" height="5" rx="1"/><rect x="360" y="485" width="11" height="5" rx="1"/><rect x="391" y="485" width="11" height="5" rx="1"/><rect x="422" y="485" width="11" height="5" rx="1"/><rect x="453" y="485" width="11" height="5" rx="1"/><rect x="484" y="485" width="11" height="5" rx="1"/>
+ <rect x="143" y="558" width="11" height="5" rx="1"/><rect x="174" y="558" width="11" height="5" rx="1"/><rect x="205" y="558" width="11" height="5" rx="1"/><rect x="236" y="558" width="11" height="5" rx="1"/><rect x="267" y="558" width="11" height="5" rx="1"/><rect x="298" y="558" width="11" height="5" rx="1"/><rect x="329" y="558" width="11" height="5" rx="1"/><rect x="360" y="558" width="11" height="5" rx="1"/><rect x="391" y="558" width="11" height="5" rx="1"/><rect x="422" y="558" width="11" height="5" rx="1"/><rect x="453" y="558" width="11" height="5" rx="1"/><rect x="484" y="558" width="11" height="5" rx="1"/></g>
+ <g><rect x="142" y="496" width="117" height="55" rx="3" fill="#eef3e9"/><path d="M149 539h104" stroke="#9aad9e"/><rect x="172" y="520" width="27" height="19" fill="#ffbf00"/><circle cx="220" cy="530" r="9" fill="#06b0f0"/>
+ <rect x="268" y="496" width="117" height="55" rx="3" fill="#eef3e9"/><path d="M275 539h104" stroke="#9aad9e"/><circle cx="333" cy="530" r="9" fill="#06b0f0" opacity=".25"/><rect x="305" y="520" width="27" height="19" fill="#ffbf00"/>
+ <rect x="394" y="496" width="117" height="55" rx="3" fill="#eef3e9"/><path d="M401 539h104" stroke="#9aad9e"/><rect x="437" y="520" width="27" height="19" fill="#ffbf00"/><circle cx="418" cy="530" r="9" fill="#06b0f0"/></g>
+ <g font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#7a8d80"><text x="144" y="586">t − 1</text><text x="326" y="586" text-anchor="middle">OBSERVED VIDEO V</text><text x="506" y="586" text-anchor="end">t + 1</text></g>
+</svg>
