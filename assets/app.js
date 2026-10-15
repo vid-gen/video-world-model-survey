@@ -113,6 +113,7 @@ const categoryNames = {
   understanding: 'Reading', generation: 'Writing', unified: 'Sharing',
   'world-models': 'Interacting', evaluation: 'Evaluation', background: 'Foundations'
 };
+const resourceNames = { code: 'Code', project: 'Project', data: 'Data' };
 const pageSize = 24;
 const controls = {
   search: document.getElementById('search'), year: document.getElementById('year'),
@@ -156,6 +157,19 @@ function renderPaper(paper) {
   category.dataset.category = paper.category;
   meta.append(category, element('span', 'venue-label', paper.venue));
   main.append(heading, element('p', 'paper-authors', names), meta);
+  if (paper.resources) {
+    const resources = element('div', 'paper-resources');
+    for (const [kind, label] of Object.entries(resourceNames)) {
+      if (!paper.resources[kind]) continue;
+      const resource = element('a', '', `${label} ↗`);
+      resource.href = paper.resources[kind];
+      resource.target = '_blank';
+      resource.rel = 'noopener noreferrer';
+      resource.setAttribute('aria-label', `${label} for ${paper.title}`);
+      resources.append(resource);
+    }
+    if (resources.childElementCount) main.append(resources);
+  }
   const button = element('button', 'bib-button', 'BibTeX');
   button.type = 'button';
   button.setAttribute('aria-label', `View BibTeX for ${paper.title}`);
@@ -243,7 +257,10 @@ function isCatalog(value) {
     typeof paper.title === 'string' && typeof paper.key === 'string' &&
     typeof paper.venue === 'string' && typeof paper.bibtex === 'string' &&
     Number.isInteger(paper.year) && Array.isArray(paper.authors) && paper.authors.every(name => typeof name === 'string') &&
-    Object.hasOwn(categoryNames, paper.category) && typeof paper.url === 'string' && /^https:\/\//.test(paper.url)
+    Object.hasOwn(categoryNames, paper.category) && typeof paper.url === 'string' && /^https:\/\//.test(paper.url) &&
+    (paper.resources === undefined || (paper.resources !== null && typeof paper.resources === 'object' &&
+      !Array.isArray(paper.resources) && Object.entries(paper.resources).every(([kind, url]) =>
+        Object.hasOwn(resourceNames, kind) && typeof url === 'string' && /^https?:\/\//.test(url))))
   ) && new Set(value.papers.map(paper => paper.key)).size === value.papers.length;
 }
 async function fetchCatalog(url, timeout) {

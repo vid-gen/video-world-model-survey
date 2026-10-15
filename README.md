@@ -10,8 +10,7 @@ Video.
 The site presents the survey through its original artwork: the four-operation
 overview, research timeline, representation and architecture diagrams, world-model
 taxonomy, and seven challenge illustrations. A searchable collection contains 652
-references. The manuscript is forthcoming; no paper download or publication
-identifier is implied by this website.
+references, with links to the cited papers and their verified official resources.
 
 ## Editing and preview
 
