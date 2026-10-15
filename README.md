@@ -1,8 +1,7 @@
 # Video World Model Survey
 
-Companion website for **Revisiting Video Foundation Models through the Lens of
-World Modeling**: Reading, Writing, Sharing, and Interacting with the World through
-Video.
+Companion website for **Reading, Writing, Sharing, and Interacting with the World
+through Video: A Survey Toward Unified Video World Models**.
 
 **[Visit the website](https://vid-gen.github.io/video-world-model-survey/)** ·
 **[Browse the literature repository](https://github.com/vid-gen/awesome-video-world-model)**
@@ -65,6 +64,9 @@ To re-export from a local manuscript, install Poppler and WebP utilities, then r
 ```sh
 python3 tools/render_figures.py /path/to/manuscript
 ```
+
+For a single updated figure, add `--only overview` (or another figure name).
+The overview export also refreshes the social-preview PNG.
 
 Review the manifest and figure captions after any export. The source-file map is
 explicit so an older similarly named figure cannot silently replace the active

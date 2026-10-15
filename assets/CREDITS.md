@@ -8,12 +8,12 @@ WebP without changing labels, colors, or scientific content. PDF pages are
 rendered at 2600 pixels wide; source PNG illustrations retain their dimensions.
 
 The exact source filenames and output dimensions are recorded in
-[`figures/manifest.json`](figures/manifest.json). The active timeline source is
-`F02_field_timeline-5.pdf`, not an earlier similarly named revision.
+[`figures/manifest.json`](figures/manifest.json). The active overview source is
+`F01_teaser_v34b.pdf`; the timeline source is `F02_field_timeline-5.pdf`.
 
 The inline world-model taxonomy hides only blank PDF page margins through CSS;
 the figure viewer opens the complete, unchanged image. The social preview PNG
-is an earlier web rendering of the same active overview figure.
+is rendered from the same active overview figure as its lossless WebP version.
 
 These are explanatory illustrations from the survey, not newly generated model
 outputs or experimental results. Third-party research depicted in the figures

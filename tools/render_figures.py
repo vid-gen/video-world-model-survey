@@ -2,6 +2,7 @@
 """Render only the manuscript figures explicitly selected for the public site.
 
 Usage: python3 tools/render_figures.py /path/to/manuscript
+       python3 tools/render_figures.py /path/to/manuscript --only overview
 Requires Poppler (pdftoppm) and cwebp. No manuscript source is copied.
 """
 import argparse
@@ -13,7 +14,7 @@ import subprocess
 import tempfile
 
 FIGURES = {
-    "overview": "F01_teaser_B_video_bridge_v2.pdf",
+    "overview": "F01_teaser_v34b.pdf",
     "timeline": "F02_field_timeline-5.pdf",
     "reading": "F04_representation_learning-1.pdf",
     "writing-latents": "F05_latent_representations-2.pdf",
@@ -36,15 +37,19 @@ FIGURES = {
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("manuscript", type=Path)
+    parser.add_argument("--only", nargs="+", choices=tuple(FIGURES),
+                        help="Render selected figures without changing the other manifest entries.")
     args = parser.parse_args()
     for command in ("pdftoppm", "cwebp"):
         if not shutil.which(command):
             parser.error(f"Install {command} before rendering.")
     destination = Path(__file__).resolve().parents[1] / "assets" / "figures"
     destination.mkdir(parents=True, exist_ok=True)
-    manifest = {}
+    manifest_path = destination / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()) if args.only and manifest_path.is_file() else {}
     with tempfile.TemporaryDirectory(prefix="survey-figures-") as temporary:
-        for name, original in FIGURES.items():
+        for name in args.only or FIGURES:
+            original = FIGURES[name]
             source = args.manuscript / "figures" / original
             if not source.is_file():
                 parser.error(f"Missing figure: {original}")
@@ -60,10 +65,12 @@ def main():
             width, height = struct.unpack(">II", header[16:24])
             output = destination / f"{name}.webp"
             subprocess.run(["cwebp", "-quiet", "-lossless", "-z", "7", str(raster), "-o", str(output)], check=True)
+            if name == "overview":
+                shutil.copyfile(raster, destination.parent / "survey-overview.png")
             manifest[name] = {"source": original, "file": f"assets/figures/{name}.webp",
                               "width": width, "height": height}
             print(f"{name}: {width} × {height}, {output.stat().st_size:,} bytes")
-    (destination / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
 
 
 if __name__ == "__main__":

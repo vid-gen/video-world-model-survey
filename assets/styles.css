@@ -62,7 +62,7 @@ sup { font-size: .65em; vertical-align: super; line-height: 0; }
   background-size: 100% 100%, 52px 52px, 52px 52px; background-color: #f7f9fc;
 }
 .cover-inner { max-width: 1160px; margin: auto; text-align: center; }
-h1 { color: var(--navy); font: bold clamp(36px, 4.5vw, 62px)/1.15 var(--serif); letter-spacing: -.035em; }
+h1 { color: var(--navy); font: bold clamp(36px, 4.3vw, 56px)/1.15 var(--serif); letter-spacing: -.035em; }
 .title-line { display: block; }
 .four-operations { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 28px; margin-top: 27px; }
 .four-operations a { display: inline-flex; gap: 9px; align-items: center; text-decoration: none; font: bold 24px/1.3 var(--serif); }
