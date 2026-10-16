@@ -14,7 +14,9 @@
   <link rel="canonical" href="https://vid-gen.github.io/video-world-model-survey/">
   <link rel="icon" type="image/svg+xml" href="assets/icons/reading.svg">
   <link rel="stylesheet" href="assets/styles.css?v=20261016">
+  <link rel="stylesheet" href="assets/interactive.css?v=20261016b">
   <script src="assets/app.js" defer></script>
+  <script src="assets/world-observer.js?v=20261016" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -69,6 +71,36 @@
         <h2 id="lens-title">A video is a trace of a world.</h2>
         <p>Video foundation models understand scenes, generate futures, couple perception with creation, and respond to actions. This survey connects these capabilities through the relationship between <strong>observed video</strong> and an <strong>evolving world</strong>.</p>
       </header>
+      <figure class="world-observer" id="world-observer" data-scene="assets/world-observer.svg?v=20261016a" aria-labelledby="observer-title">
+        <div class="observer-heading"><h3 id="observer-title">One world. Partial views.</h3><span>Video ↔ World</span></div>
+        <img class="observer-fallback" src="assets/world-observer.svg?v=20261016a" width="700" height="385" alt="The paper's illustrated landscape, with cameras observing a moving object from partial views.">
+        <div class="observer-experience" hidden>
+          <div class="observer-stages">
+            <div class="observer-world-stage">
+              <div class="observer-stage-label"><span><small>01</small> The evolving world</span><em>W<sub>t</sub></em></div>
+              <div class="observer-world" aria-label="Illustrated world and the selected observation region"></div>
+            </div>
+            <div class="observer-transfer" aria-hidden="true"><span>Observe</span><i></i><b>→</b></div>
+            <div class="observer-video-stage">
+              <div class="observer-stage-label"><span><small>02</small> The video trace</span><em>V<sub>1:t</sub></em></div>
+              <div class="observer-view-buttons" role="group" aria-label="Observation region">
+                <button type="button" data-observer-view="0" aria-pressed="true">Riverside</button>
+                <button type="button" data-observer-view="1" aria-pressed="false">Wide view</button>
+                <button type="button" data-observer-view="2" aria-pressed="false">Courtyard</button>
+              </div>
+              <div class="observer-video"><span class="observer-view-name">Riverside</span><span class="observer-timestamp">00.0 s</span><div class="observer-feed"></div><span class="observer-visibility">Object visible</span></div>
+              <div class="observer-filmstrip" role="group" aria-label="Sampled video frames"></div>
+            </div>
+          </div>
+          <div class="observer-controls">
+            <button class="observer-play" type="button" aria-label="Play animation"><span aria-hidden="true">▶</span> <span data-play-label>Play</span></button>
+            <label class="observer-scrubber"><span class="sr-only">Animation time in seconds</span><input type="range" min="0" max="16" step="0.05" value="0" aria-label="Animation time in seconds"><span class="observer-duration">0.0 / 16 s</span></label>
+            <button class="observer-reverse" type="button" aria-pressed="false"><span aria-hidden="true">↶</span> Reverse motion</button>
+          </div>
+          <p class="observer-message" role="status" aria-live="polite">Change the view to see a different part of the same world.</p>
+        </div>
+        <figcaption>A continuous world gives rise to a partial video trace. Views crop the same illustrated scene; the purple object can move out of view or behind a building. <span>Conceptual animation, not model output.</span></figcaption>
+      </figure>
       <div class="world-definitions">
         <div><span class="math-symbol">V</span><h3>Observed video</h3><p>A partial, lossy, temporally ordered record of the world.</p></div>
         <div><span class="math-symbol">W</span><h3>Latent temporal world</h3><p>Entities, relations, and physical properties evolving over time.</p></div>
@@ -83,10 +115,11 @@
         <h2 id="timeline-title">Four paths, a shared world.</h2>
         <p>Selected milestones in video understanding, generation, shared representations and workflows, and world prediction and control.</p>
       </header>
-      <figure class="paper-figure timeline-figure">
-        <a class="figure-link" href="assets/figures/timeline.webp" data-figure data-title="The evolution of video foundation models" aria-label="Enlarge: The evolution of video foundation models"><img src="assets/figures/timeline.webp" width="2600" height="3680" loading="lazy" decoding="async" alt="Selected milestones in Reading, Writing, Sharing, and Interacting, 2017–2026."><span class="enlarge" aria-hidden="true">↗ Enlarge figure</span></a>
-        <figcaption><strong>The evolution of video foundation models, 2017–2026.</strong></figcaption>
-      </figure>
+      <div class="timeline-reader">
+        <iframe src="assets/timeline/index.html?v=20261016d" title="Interactive research timeline: Reading, Writing, Sharing, and Interacting, 2017–2026" loading="lazy" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <img class="timeline-print" src="assets/figures/timeline.webp" width="2600" height="3680" loading="lazy" alt="The original paper timeline, 2017–2026.">
+      <div class="timeline-links"><span>Original vector artwork · Click a work to read its paper</span><a href="assets/timeline/" target="_blank" rel="noopener">Open the full timeline ↗</a><a href="assets/figures/timeline.webp" data-figure data-title="The original paper timeline">Paper figure ↗</a></div>
     </section>
 
     <div id="operations" class="operations-intro"><p>Four operations on the video–world relationship</p></div>

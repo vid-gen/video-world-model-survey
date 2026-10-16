@@ -1,0 +1,58 @@
+:root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #24394a; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7f8; height: 100dvh; display: flex; flex-direction: column; }
+[hidden] { display: none !important; }
+button, select, input { font: inherit; }
+a { color: inherit; text-underline-offset: .2em; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button, select { cursor: pointer; }
+button:disabled { opacity: .35; cursor: default; }
+:focus-visible { outline: 3px solid #087cae; outline-offset: 3px; }
+.reader-toolbar { flex: none; padding: 17px 20px 12px; background: #fff; border-bottom: 1px solid #dfe5ea; }
+.reader-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.reader-heading strong { font-size: 16px; }
+.reader-heading strong span { margin-left: 10px; color: #677c89; font-size: 13px; font-weight: 400; }
+.standalone { font-size: 12px; }
+body.standalone .standalone { display: none; }
+.reader-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 14px; font-size: 13px; }
+.reader-controls button, .reader-controls select, #svg-download { border: 1px solid #cfd9df; border-radius: 4px; background: #fff; color: #24394a; min-height: 36px; padding: 5px 9px; }
+.reader-controls button:hover, #svg-download:hover { background: #f0f5f8; }
+.reader-controls label { display: inline-flex; gap: 7px; align-items: center; }
+.zoom-controls { display: flex; align-items: center; gap: 5px; }
+.zoom-controls button:first-child, .zoom-controls button:nth-of-type(2) { width: 36px; font-size: 20px; line-height: 1; }
+#zoom-level { min-width: 44px; text-align: center; font-variant-numeric: tabular-nums; }
+#svg-download { text-decoration: none; display: inline-flex; align-items: center; }
+input { accent-color: #173c60; width: 17px; height: 17px; }
+.path-controls { display: flex; flex-wrap: wrap; gap: 7px 19px; margin-top: 12px; }
+.path-controls button { border: 0; border-bottom: 2px solid transparent; min-height: 34px; padding: 3px 0; color: #5c7180; background: none; font-size: 12px; }
+.path-controls button::before { content: ""; width: 7px; height: 7px; display: inline-block; background: #8a9eac; border-radius: 50%; margin-right: 6px; }
+.path-controls button[data-path="reading"]::before { background: #ffbf00; }
+.path-controls button[data-path="writing"]::before { background: #06b0f0; }
+.path-controls button[data-path="sharing"]::before { background: #82f5b1; }
+.path-controls button[data-path="world_model"]::before { background: #cd93e3; }
+.path-controls button[aria-pressed="true"] { border-bottom-color: #59768b; color: #24394a; font-weight: 600; }
+html:not(.reader-ready) .reader-controls, html:not(.reader-ready) .path-controls { display: none; }
+#viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: auto; scrollbar-gutter: stable; padding: 18px; position: relative; }
+#sheet { width: 100%; margin-inline: auto; background: #fffefa; box-shadow: 0 1px 8px #24394a10; }
+#sheet svg { display: block; width: 100%; height: auto; }
+#sheet .tag:hover rect, #sheet .tag:focus-visible rect { stroke: #173c60; stroke-width: 2.5px; }
+#sheet .tag:focus-visible { outline: none; }
+footer { flex: none; display: flex; gap: 12px; justify-content: space-between; padding: 10px 20px; background: #fff; border-top: 1px solid #dfe5ea; color: #61727e; font-size: 12px; }
+@media (max-width: 560px) {
+  .reader-toolbar { padding: 12px; }
+  .reader-heading strong span { display: none; }
+  .reader-controls { gap: 8px 12px; margin-top: 10px; font-size: 12px; }
+  .path-controls { gap: 3px 11px; margin-top: 8px; }
+  .path-controls button { font-size: 11px; }
+  #viewport { padding: 10px; }
+  footer { padding: 9px 12px; font-size: 11px; }
+  footer > span { display: none; }
+}
+@media print {
+  @page { size: A4 portrait; margin: 8mm; }
+  body { height: auto; background: #fff; }
+  .reader-toolbar, footer { display: none; }
+  #viewport { display: block; overflow: visible; padding: 0; }
+  #sheet { width: 194mm !important; margin: 0; box-shadow: none; }
+  #sheet svg { width: 194mm; height: 281mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}

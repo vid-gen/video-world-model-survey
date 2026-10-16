@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-350 -215 700 385" role="img" aria-labelledby="observer-scene-title observer-scene-desc">
+<title id="observer-scene-title">Observe a changing world through video</title>
+<desc id="observer-scene-desc">A moving purple object passes through the paper's illustrated landscape. Cameras observe only part of the same world.</desc>
+<defs><g id="observer-base"><ellipse xmlns="http://www.w3.org/2000/svg" cy="96" rx="235" ry="12" fill="#253b50" opacity=".06" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-204 23 L-17 -69 199 17 10 107Z" fill="#c3d9d5" stroke="#91aca8" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-204 23 L10 107 V130 L-204 47Z" fill="#a4baba" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M10 107 L199 17 V41 L10 130Z" fill="#799b9b" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-193 25 L-15 -58 183 18 9 96Z" fill="#e0e9d6" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-42 -41 C-98 -1 72 25 13 97 L55 74 C107 17 -46 -2 -13 -54Z" fill="#93c8d6" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-133 14 L-76 -59 -21 8 -78 34Z" fill="#91a99b" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-76 -59 L-21 8 -48 0Z" fill="#6e8b82" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-76 -59 L-96 -32 -80 -35 -69 -20 -60 -37Z" fill="#fbfcf7" />
+
+<path xmlns="http://www.w3.org/2000/svg" d="M-183 24 Q-151 -3 -132 0 Q-98 5 -78 40 L-130 58Z" fill="#a8c398" />
+
+<path id="observer-route" d="M-168 26 C-110 47 -40 60 7 41 S91 -18 153 5" fill="none" stroke="#bccbc5" stroke-width="11"/>
+<path d="M-168 26 C-110 47 -40 60 7 41 S91 -18 153 5" fill="none" stroke="#f1f3e7" stroke-width="8"/>
+</g><g id="observer-front"><g xmlns="http://www.w3.org/2000/svg" stroke="#849d9d" stroke-width=".8">
+<path d="M57 9 v-41 l24 -11 0 41Z" fill="#d0e1e1" /><path d="M81 -43 l21 9 v41 L81 -2Z" fill="#91b3bd" /><path d="M57 -32 l24 -11 21 9 -25 12Z" fill="#edf3ee" />
+<path d="M105 23 v-55 l22 -11 v55Z" fill="#d9e3df" /><path d="M127 -43 l17 7 v55 l-17 -7Z" fill="#83a9b3" /><path d="M105 -32 l22 -11 17 7 -22 11Z" fill="#f5f6ee" />
+<path d="M62 43 v-22 l18 -9 v22Z" fill="#e7e5d3" /><path d="M80 12 l21 8 v22 l-21 -8Z" fill="#aaaead" /><path d="M62 21 l18 -9 21 8 -18 9Z" fill="#f6f4e7" />
+</g>
+
+<g xmlns="http://www.w3.org/2000/svg" stroke="#f7f9f3" stroke-width="2" opacity=".7"><path d="M64 -22 l11 -5 M64 -11 l11 -5 M111 -23 l10 -5 M111 -11 l10 -5 M132 -27 l6 3 M132 -14 l6 3" /></g>
+
+<g xmlns="http://www.w3.org/2000/svg" fill="#628e75" stroke="#526f63" stroke-width=".7"><path d="M-143 29 v-19 M-117 40 v-19 M-79 62 v-18 M145 37 v-17" stroke-width="2" /><path d="M-143 -17 l-13 29 26 0Z M-117 -6 l-12 29 24 0Z M-79 17 l-12 28 24 0Z M145 -6 l-12 28 24 0Z" /></g>
+</g><g id="observer-subject"><ellipse cx="0" cy="2" rx="9" ry="3" fill="#47586b" opacity=".16"/><circle cy="-7" r="7" fill="#b35bd5" stroke="#783b92" stroke-width="1"/><circle cx="-2" cy="-9" r="2" fill="#f6e9fc"/></g></defs>
+<path d="M-350 -130 Q-230 -145 -215 -20" fill="none" stroke="#ffbf00" stroke-width="3" opacity=".65"/>
+<path d="M-100 -215 Q-145 -100 -60 -55" fill="none" stroke="#06b0f0" stroke-width="3" opacity=".65"/>
+<path d="M350 -170 Q240 -110 172 -32" fill="none" stroke="#82f5b1" stroke-width="3" opacity=".8"/>
+<path d="M350 100 Q250 100 191 37" fill="none" stroke="#cd93e3" stroke-width="3" opacity=".7"/>
+<use href="#observer-base"/><g data-subject="" transform="translate(-168 26)"><use href="#observer-subject"/></g><use href="#observer-front"/>
+<rect data-view-field="" x="-200" y="-55" width="265" height="168" rx="3" fill="#e8f5fc" fill-opacity=".08" stroke="#4383a0" stroke-width="1" stroke-dasharray="5 5"/>
+<g data-camera="0"><g xmlns="http://www.w3.org/2000/svg" class="camera" transform="translate(-260 -38)"><g transform="rotate(15)"><path d="M-34 -21 h42 v37 h-42Z" fill="#eef3f4" stroke="#607f8d" stroke-width="2" /><path d="M8 -14 l20 -8 v36 L8 7Z" fill="#abc6cf" stroke="#607f8d" stroke-width="2" /><ellipse cx="29" cy="-4" rx="5" ry="17" fill="#658c9b" /><ellipse cx="29" cy="-4" rx="2" ry="11" fill="#d7ebef" /><circle cx="-24" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-1" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-24" cy="-25" r="4" fill="#607f8d" /><circle cx="-1" cy="-25" r="4" fill="#607f8d" /></g><path d="M-5 20 v12 m0 0 l-20 37 m20 -37 l20 37 m-20 -37 v37" stroke="#7c959f" stroke-width="2" fill="none" /></g>
+</g>
+<g data-camera="1"><g xmlns="http://www.w3.org/2000/svg" class="camera" transform="translate(0 -143)"><g transform="rotate(90)"><rect x="-34" y="-21" width="42" height="37" rx="4" fill="#eef3f4" stroke="#607f8d" stroke-width="2" /><path d="M8 -14 l20 -8 v36 L8 7Z" fill="#abc6cf" stroke="#607f8d" stroke-width="2" /><ellipse cx="29" cy="-4" rx="5" ry="17" fill="#658c9b" /><ellipse cx="29" cy="-4" rx="2" ry="11" fill="#d7ebef" /><circle cx="-24" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-1" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-24" cy="-25" r="4" fill="#607f8d" /><circle cx="-1" cy="-25" r="4" fill="#607f8d" /></g></g>
+</g>
+<g data-camera="2"><g xmlns="http://www.w3.org/2000/svg" class="camera" transform="translate(260 -38)"><g transform="rotate(165)"><rect x="-34" y="-21" width="42" height="37" rx="4" fill="#eef3f4" stroke="#607f8d" stroke-width="2" /><path d="M8 -14 l20 -8 v36 L8 7Z" fill="#abc6cf" stroke="#607f8d" stroke-width="2" /><ellipse cx="29" cy="-4" rx="5" ry="17" fill="#658c9b" /><ellipse cx="29" cy="-4" rx="2" ry="11" fill="#d7ebef" /><circle cx="-24" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-1" cy="-25" r="13" fill="#d4e3e8" stroke="#607f8d" stroke-width="2" /><circle cx="-24" cy="-25" r="4" fill="#607f8d" /><circle cx="-1" cy="-25" r="4" fill="#607f8d" /></g><path d="M5 20 v12 m0 0 l-20 37 m20 -37 l20 37 m-20 -37 v37" stroke="#7c959f" stroke-width="2" fill="none" /></g>
+</g>
+</svg>

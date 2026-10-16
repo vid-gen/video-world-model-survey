@@ -10,6 +10,8 @@ The site presents the survey through its original artwork: the four-operation
 overview, research timeline, representation and architecture diagrams, world-model
 taxonomy, and seven challenge illustrations. A searchable collection contains 652
 references, with links to the cited papers and their verified official resources.
+The overview also includes an interactive video–world observation illustration;
+the vector timeline opens papers directly and supports zoom and year navigation.
 
 ## Editing and preview
 
@@ -49,6 +51,39 @@ the files unchanged during publication. A push to `main` deploys the website at
 the project URL above.
 
 ## Content and artwork
+
+### Interactive world and timeline
+
+`assets/world-observer.js` animates the original timeline's landscape and camera
+outlines. A new moving subject follows a deterministic 16-second path. The video
+panel and sampled frames crop the exact same scene at the indicated timestamps;
+they are a conceptual illustration, not model outputs. Play/pause, scrubbing,
+view selection and motion reversal work with a keyboard. Autoplay is disabled
+for reduced-motion preferences, pauses outside the viewport or hidden tabs, and
+stops at the end of the clip. A static SVG remains if JavaScript is unavailable.
+
+The self-contained `assets/timeline/` reader preserves both vector variants from
+the authors' supplied `F02_updated_A4_selectable.html`, including all 160 displayed
+paper entries and their URLs. It has fit/read-size zoom, year and direction
+navigation, affiliation toggling, SVG downloads and optional full-screen viewing.
+It can be opened directly, independently of the main page. Without JavaScript,
+the first complete vector timeline and paper links remain available; printing
+the main page uses the original paper figure instead of a clipped viewport.
+
+To import a replacement authored HTML timeline (the input is never modified):
+
+```sh
+python3 tools/import_interactive_timeline.py /path/to/F02_updated_A4_selectable.html
+python3 tools/check_interactive.py
+```
+
+The importer reproduces `assets/timeline/index.html`, its two downloadable SVGs,
+and `assets/world-observer.svg`. Edit `assets/timeline/reader-template.html` for
+reader markup, not the generated `index.html`; reader controls/styles live in
+`reader.js` and `reader.css`. The animated scene's new route/subject are defined
+in the importer. Bump changed asset version queries when publishing updates.
+
+### Manuscript artwork
 
 The 17 figures in `assets/figures/` are lossless web renderings of the original
 manuscript artwork, not redrawn diagrams. `assets/figures/manifest.json` records
