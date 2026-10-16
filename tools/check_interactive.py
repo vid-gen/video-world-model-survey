@@ -36,20 +36,23 @@ def check():
             assert (filename.parent / link).exists(), f"Missing asset: {filename}: {link}"
     document = (timeline / "index.html").read_text()
     inline = re.findall(r"<svg\b.*?</svg>", document, re.S)
-    assert len(inline) == 2
+    assert len(inline) == 1
     variants = [ET.parse(timeline / name).getroot() for name in ("with-affiliations.svg", "without-affiliations.svg")]
     links = [[(a.attrib, ET.tostring(a, encoding="unicode")) for a in variant.findall("s:a", NS)] for variant in variants]
     assert len(links[0]) == 160 and len(links[1]) == 160
     assert [attrs for attrs, _ in links[0]] == [attrs for attrs, _ in links[1]]
-    for index, source in enumerate(inline):
+    for source in inline:
         embedded = ET.fromstring(source)
         embedded_links = [ET.tostring(a, encoding="unicode") for a in embedded.findall("s:a", NS)]
-        assert embedded_links == [markup for _, markup in links[index]], "Embedded paper entries changed"
+        assert embedded_links == [markup for _, markup in links[0]], "Embedded paper entries changed"
         for element in embedded.iter():
             assert element.tag.split("}")[-1] not in {"script", "foreignObject", "image"}
             assert not any(key.lower().startswith("on") for key in element.attrib)
             if element.get("href"):
                 assert element.get("href").startswith("https://")
+        assert not any((e.text or '').startswith('Time flows downward') for e in embedded.findall('s:text', NS))
+    for removed in ('affiliation-toggle', 'svg-download', 'print-button', 'reader-help', 'reader-heading', 'Manuscript work index', 'A4 portrait'):
+        assert removed not in document, f"Authoring/export UI leaked into reader: {removed}"
     world = ET.parse(ROOT / "assets/world-observer.svg").getroot()
     ids = {element.get("id") for element in world.iter() if element.get("id")}
     for element in world.iter():
@@ -58,11 +61,10 @@ def check():
             assert href[1:] in ids, f"Missing world symbol: {href}"
     assert len([e for e in world.iter() if e.get("data-camera") is not None]) == 3
     template = (timeline / "reader-template.html").read_text()
-    assert template.count("<!-- TIMELINE_WITH -->") == 1
-    assert template.count("<!-- TIMELINE_WITHOUT -->") == 1
+    assert template.count("<!-- TIMELINE_ART -->") == 1
     assert "<!-- TIMELINE_" not in document
     assert "F02_manuscript_work_inventory.md" not in document
-    print("PASS: unique HTML IDs, local assets, 160 intact entries per variant, HTTPS paper links, self-contained valid world SVG, generated reader.")
+    print("PASS: compact reader without authoring/export UI, 160 intact paper entries, original source variants preserved, unique IDs, local assets, valid world SVG.")
 
 
 if __name__ == "__main__":

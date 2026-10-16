@@ -22,10 +22,12 @@ remains credited in the manuscript and the reference collection.
 ## Interactive timeline and observation illustration
 
 The authors supplied `F02_updated_A4_selectable.html` for the interactive timeline.
-Both original SVG drawings, with and without affiliations, are preserved in
-`timeline/` with every paper entry, title and link intact. The embedded reader
-adds only navigation and accessibility controls; it does not revise the
-timeline's research claims. Its displayed milestone counts refer to that drawing,
+Both exact original SVG drawings, with and without affiliations, are preserved
+as source assets in `timeline/`. The embedded reader uses the affiliation-visible
+drawing with every paper entry, title and link intact, omitting only the
+production-note footer. Authoring, printing and download controls from the
+source HTML are not part of the website. The reader adds compact navigation
+without revising the timeline's research claims. Milestone counts refer to that drawing,
 not the full reference collection. The previously published manuscript timeline
 remains available as `figures/timeline.webp` and as the main-page print fallback.
 

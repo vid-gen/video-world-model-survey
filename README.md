@@ -62,12 +62,13 @@ view selection and motion reversal work with a keyboard. Autoplay is disabled
 for reduced-motion preferences, pauses outside the viewport or hidden tabs, and
 stops at the end of the clip. A static SVG remains if JavaScript is unavailable.
 
-The self-contained `assets/timeline/` reader preserves both vector variants from
-the authors' supplied `F02_updated_A4_selectable.html`, including all 160 displayed
-paper entries and their URLs. It has fit/read-size zoom, year and direction
-navigation, affiliation toggling, SVG downloads and optional full-screen viewing.
-It can be opened directly, independently of the main page. Without JavaScript,
-the first complete vector timeline and paper links remain available; printing
+The self-contained `assets/timeline/` reader displays the affiliation-visible
+vector drawing from the authors' supplied `F02_updated_A4_selectable.html`, with
+all 160 paper entries and URLs intact. The website keeps only compact zoom, year
+and direction navigation; authoring/export controls and production notes are not
+part of the presentation. Both exact source SVG variants are retained as assets.
+The reader can be opened independently of the main page. Without JavaScript,
+the complete vector timeline and paper links remain available; printing
 the main page uses the original paper figure instead of a clipped viewport.
 
 To import a replacement authored HTML timeline (the input is never modified):
@@ -77,7 +78,7 @@ python3 tools/import_interactive_timeline.py /path/to/F02_updated_A4_selectable.
 python3 tools/check_interactive.py
 ```
 
-The importer reproduces `assets/timeline/index.html`, its two downloadable SVGs,
+The importer reproduces `assets/timeline/index.html`, its two source SVGs,
 and `assets/world-observer.svg`. Edit `assets/timeline/reader-template.html` for
 reader markup, not the generated `index.html`; reader controls/styles live in
 `reader.js` and `reader.css`. The animated scene's new route/subject are defined

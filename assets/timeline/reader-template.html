@@ -5,30 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>Video–World · Interactive research timeline</title>
-  <link rel="stylesheet" href="reader.css?v=20261016d">
-  <script src="reader.js?v=20261016d" defer></script>
+  <link rel="stylesheet" href="reader.css?v=20261016-clean2">
+  <script src="reader.js?v=20261016-clean2" defer></script>
 </head>
 <body>
   <header class="reader-toolbar">
-    <div class="reader-heading"><strong>Research roots <span>2017–2026</span></strong><a class="standalone" href="./" target="_blank" rel="noopener">Open full reader ↗</a></div>
     <div class="reader-controls">
-      <div class="zoom-controls" role="group" aria-label="Timeline zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><output id="zoom-level" aria-live="polite">Fit</output><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="fit-width" type="button">Fit width</button><button id="read-size" type="button">Read size</button></div>
-      <label>Jump to <select id="year"><option value="0">Overview</option><option value="2017">2017–2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option><option value="world">Video ↔ World</option></select></label>
-      <label class="affiliation"><input id="affiliation-toggle" type="checkbox" checked> Affiliations</label>
-      <a id="svg-download" href="with-affiliations.svg" download>SVG ↓</a>
-      <button id="fullscreen" type="button" hidden>Full screen ⛶</button>
+      <div class="zoom-controls" role="group" aria-label="Timeline zoom"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><output id="zoom-level" aria-live="polite">Fit</output><button id="zoom-in" type="button" aria-label="Zoom in">+</button><button id="fit-width" type="button" aria-label="Fit timeline to width">Fit</button></div>
+      <select id="year" aria-label="Jump to year"><option value="0">All years</option><option value="2017">2017–2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option><option value="world">Video ↔ World</option></select>
     </div>
     <nav class="path-controls" aria-label="Focus a research direction">
-      <button type="button" data-path="all" aria-pressed="true">All paths</button>
+      <button type="button" data-path="all" aria-pressed="true">All</button>
       <button type="button" data-path="reading" aria-pressed="false">Reading</button>
       <button type="button" data-path="writing" aria-pressed="false">Writing</button>
       <button type="button" data-path="sharing" aria-pressed="false">Sharing</button>
       <button type="button" data-path="world_model" aria-pressed="false">Interacting</button>
     </nav>
   </header>
-  <main id="viewport" tabindex="0" aria-label="Interactive timeline. Scroll to explore. Plus and minus zoom; zero fits the width." aria-describedby="reader-help">
-    <div id="sheet"><section id="with-affiliation" aria-label="Timeline with affiliations"><!-- TIMELINE_WITH --></section><section id="without-affiliation" aria-label="Timeline without affiliations" hidden><!-- TIMELINE_WITHOUT --></section></div>
+  <main id="viewport" tabindex="0" aria-label="Interactive timeline. Scroll to explore. Plus and minus zoom; zero fits the width.">
+    <div id="sheet"><!-- TIMELINE_ART --></div>
   </main>
-  <footer id="reader-help">Select a work to open its paper. <span>Zoom for detail · Scroll to explore</span></footer>
 </body>
 </html>

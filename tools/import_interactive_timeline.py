@@ -37,12 +37,12 @@ def main():
     for name, svg in zip(("with-affiliations.svg", "without-affiliations.svg"), svgs):
         (output / name).write_text(svg + "\n", encoding="utf-8")
 
-    # Keep the complete vector drawing in the embedded reader. Separate SVGs
-    # provide real, working downloads and a script-free fallback.
+    # Use one default drawing, not the source HTML's authoring/export interface.
+    # Retain the exact SVG variants above as source assets. The web presentation
+    # omits only the production note; every paper entry and link stays intact.
     template = (output / "reader-template.html").read_text(encoding="utf-8")
-    first = svgs[0].replace('id="title"', 'id="title-with"').replace('id="desc"', 'id="desc-with"').replace('aria-labelledby="title desc"', 'aria-labelledby="title-with desc-with"')
-    second = svgs[1].replace('id="title"', 'id="title-without"').replace('id="desc"', 'id="desc-without"').replace('aria-labelledby="title desc"', 'aria-labelledby="title-without desc-without"')
-    (output / "index.html").write_text(template.replace("<!-- TIMELINE_WITH -->", first).replace("<!-- TIMELINE_WITHOUT -->", second), encoding="utf-8")
+    display = re.sub(r'<text\b[^>]*>Time flows downward[^<]*</text>\s*', '', svgs[0])
+    (output / "index.html").write_text(template.replace("<!-- TIMELINE_ART -->", display), encoding="utf-8")
 
     # Reuse the original world, terrain, trees, buildings and camera outlines.
     # The only new illustrated elements are a moving subject and its path.

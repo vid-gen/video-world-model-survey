@@ -6,8 +6,6 @@
   const zoomLabel = document.querySelector('#zoom-level');
   const minus = document.querySelector('#zoom-out');
   const plus = document.querySelector('#zoom-in');
-  const toggle = document.querySelector('#affiliation-toggle');
-  const variants = [document.querySelector('#with-affiliation'), document.querySelector('#without-affiliation')];
   let zoom = 1;
   let fit = true;
   let previousWidth = 0;
@@ -15,7 +13,7 @@
   function resize() {
     const width = usableWidth();
     sheet.style.width = `${Math.round(width * zoom)}px`;
-    zoomLabel.textContent = fit ? 'Fit' : `${Math.round(zoom * 100)}%`;
+    zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
     minus.disabled = zoom <= 1;
     plus.disabled = zoom >= 8;
     previousWidth = width;
@@ -26,6 +24,7 @@
     const centerY = viewport.scrollTop / oldWidth;
     zoom = Math.min(8, Math.max(1, next));
     fit = zoom === 1;
+    if (fit) document.querySelectorAll('[data-path]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.path === 'all')));
     resize();
     viewport.scrollLeft = centerX * usableWidth() * zoom - viewport.clientWidth / 2;
     viewport.scrollTop = centerY * usableWidth() * zoom;
@@ -33,14 +32,13 @@
   minus.addEventListener('click', () => setZoom(zoom / 1.4));
   plus.addEventListener('click', () => setZoom(zoom * 1.4));
   document.querySelector('#fit-width').addEventListener('click', () => setZoom(1));
-  document.querySelector('#read-size').addEventListener('click', () => setZoom(1800 / usableWidth()));
   const pathButtons = [...document.querySelectorAll('[data-path]')];
   pathButtons.forEach(button => button.addEventListener('click', () => {
     const path = button.dataset.path;
     pathButtons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
     if (path === 'all') { setZoom(1); return; }
     setZoom(1800 / usableWidth());
-    const group = variants[toggle.checked ? 0 : 1].querySelector(`.operation-header[data-operation="${path}"]`);
+    const group = sheet.querySelector(`.operation-header[data-operation="${path}"]`);
     const box = group.getBBox();
     viewport.scrollLeft = (box.x + box.width / 2) * usableWidth() * zoom / 2336 - viewport.clientWidth / 2;
   }));
@@ -56,30 +54,6 @@
     viewport.scrollTop = y * usableWidth() * zoom / 2336;
     if (event.target.value === 'world') viewport.scrollLeft = (sheet.offsetWidth - viewport.clientWidth) / 2;
   });
-  function affiliations() {
-    variants[0].hidden = !toggle.checked;
-    variants[1].hidden = toggle.checked;
-    document.querySelector('#svg-download').href = toggle.checked ? 'with-affiliations.svg' : 'without-affiliations.svg';
-  }
-  const params = new URLSearchParams(location.search);
-  toggle.checked = params.get('affiliation') !== '0';
-  toggle.addEventListener('change', affiliations);
-  affiliations();
-  document.body.classList.toggle('standalone', window.self === window.top);
-  const fullscreen = document.querySelector('#fullscreen');
-  if (document.fullscreenEnabled) {
-    fullscreen.hidden = false;
-    fullscreen.addEventListener('click', async () => {
-      try {
-        if (document.fullscreenElement) await document.exitFullscreen();
-        else await document.documentElement.requestFullscreen();
-      } catch (_) { fullscreen.hidden = true; }
-    });
-    document.addEventListener('fullscreenchange', () => {
-      fullscreen.textContent = document.fullscreenElement ? 'Exit full screen ⛶' : 'Full screen ⛶';
-      resize();
-    });
-  }
   if ('ResizeObserver' in window) new ResizeObserver(() => {
     if (usableWidth() !== previousWidth) resize();
   }).observe(viewport);

@@ -58,7 +58,6 @@
 .timeline-reader iframe { display: block; width: 100%; height: min(940px, calc(100svh - 110px)); min-height: 500px; border: 0; }
 .timeline-print { display: none; }
 .timeline-links { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; font-size: 12px; color: #607686; }
-.timeline-links > span { margin-right: auto; }
 .timeline-links a { white-space: nowrap; }
 @media (max-width: 850px) {
   .observer-stages { grid-template-columns: minmax(0, 1.2fr) 36px minmax(0, 1fr); }
@@ -84,7 +83,6 @@
   .observer-controls .observer-reverse { margin-left: auto; }
   .observer-message { font-size: 11px; }
   .timeline-links { justify-content: flex-start; font-size: 11px; }
-  .timeline-links > span { flex-basis: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .observer-world [data-camera] { transition: none; }
