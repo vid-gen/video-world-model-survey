@@ -5,9 +5,61 @@ Usage: python3 tools/import_interactive_timeline.py /path/to/timeline.html
 The supplied file is read-only; generated assets are written into assets/timeline/.
 """
 import argparse
+from html import escape, unescape
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+
+EDITORIAL_NOTE = re.compile(
+    r'未核实|待核验|待核实|最终录用|投稿记录|publication comment|作者主页称|完整论文署名',
+    re.I,
+)
+DUPLICATE_HEADINGS = (
+    'Reading, Writing, Sharing, and Interacting through Video',
+    'Video foundation models · 2017–2026',
+)
+
+
+def clean_tooltip(value):
+    """Omit uncertain publication claims instead of presenting them as facts."""
+    fields = [part.strip() for part in value.split('|')]
+    result = []
+    for index, field in enumerate(fields):
+        if index == 2:  # Institution: keep normal campus/version qualifiers.
+            field = re.sub(
+                r'[（(][^（）()]*[）)]',
+                lambda match: '' if EDITORIAL_NOTE.search(match.group()) else match.group(),
+                field,
+            ).strip()
+        if EDITORIAL_NOTE.search(field):
+            if index < 3:
+                raise ValueError('An identity/date/affiliation field needs manual review')
+            continue  # Do not invent a venue or infer final acceptance.
+        if field:
+            result.append(field)
+    return ' | '.join(result)
+
+
+def presentation_svg(svg):
+    """Clean presentation metadata only; retain work labels, geometry and URLs."""
+    def anchor_tooltip(match):
+        anchor = match.group()
+        return re.sub(
+            r'<title>(.*?)</title>',
+            lambda title: '<title>' + escape(clean_tooltip(unescape(title.group(1))), quote=False) + '</title>',
+            anchor, flags=re.S,
+        )
+    svg = re.sub(r'<a\b[^>]*>.*?</a>', anchor_tooltip, svg, flags=re.S)
+    for text in DUPLICATE_HEADINGS:
+        svg = re.sub(r'<text\b[^>]*>' + re.escape(text) + r'</text>\s*', '', svg)
+    svg = re.sub(r'<text\b[^>]*>Time flows downward[^<]*</text>\s*', '', svg)
+    svg = re.sub(r'<desc\b[^>]*>.*?</desc>', '<desc id="desc">Selected milestones in Reading, Writing, Sharing, and Interacting, 2017–2026. Work labels link to the corresponding papers.</desc>', svg, flags=re.S)
+    # Only blank space occupied by the removed duplicate headings is cropped.
+    svg = svg.replace('viewBox="0 0 2336 3384"', 'viewBox="0 70 2336 3314"')
+    if EDITORIAL_NOTE.search(svg):
+        raise ValueError('An editorial annotation remains in the public drawing')
+    return svg
 
 
 def main():
@@ -34,14 +86,15 @@ def main():
         raise ValueError("The two variants must preserve the same paper links")
     output = Path(__file__).resolve().parents[1] / "assets" / "timeline"
     output.mkdir(parents=True, exist_ok=True)
-    for name, svg in zip(("with-affiliations.svg", "without-affiliations.svg"), svgs):
+    presentations = [presentation_svg(svg) for svg in svgs]
+    for name, svg in zip(("with-affiliations.svg", "without-affiliations.svg"), presentations):
         (output / name).write_text(svg + "\n", encoding="utf-8")
 
     # Use one default drawing, not the source HTML's authoring/export interface.
-    # Retain the exact SVG variants above as source assets. The web presentation
-    # omits only the production note; every paper entry and link stays intact.
+    # Both served variants use the same presentation cleanup. Original input HTML
+    # stays read-only outside the public repository; all paper identities remain.
     template = (output / "reader-template.html").read_text(encoding="utf-8")
-    display = re.sub(r'<text\b[^>]*>Time flows downward[^<]*</text>\s*', '', svgs[0])
+    display = presentations[0]
     (output / "index.html").write_text(template.replace("<!-- TIMELINE_ART -->", display), encoding="utf-8")
 
     # Reuse the original world, terrain, trees, buildings and camera outlines.

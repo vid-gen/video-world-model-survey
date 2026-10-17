@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Dependency-free regression checks for the interactive website assets."""
+import argparse
+from copy import deepcopy
 import re
+import runpy
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
@@ -8,6 +11,25 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 NS = {"s": "http://www.w3.org/2000/svg"}
+IMPORTER = runpy.run_path(str(ROOT / 'tools/import_interactive_timeline.py'))
+
+
+def artwork_without_editorial_metadata(root):
+    """Compare original scientific artwork independently of tooltip cleanup."""
+    root = deepcopy(root)
+    root.set('viewBox', '0 0 2336 3384')
+    for child in list(root):
+        tag = child.tag.split('}')[-1]
+        if tag == 'desc' or (tag == 'text' and ((child.text or '') in IMPORTER['DUPLICATE_HEADINGS'] or (child.text or '').startswith('Time flows downward'))):
+            root.remove(child)
+    for anchor in root.findall('s:a', NS):
+        anchor.find('s:title', NS).text = None
+    for element in root.iter():
+        if element.text is not None and not element.text.strip():
+            element.text = None
+        if element.tail is not None and not element.tail.strip():
+            element.tail = None
+    return ET.tostring(root, encoding='unicode')
 
 
 class Page(HTMLParser):
@@ -27,7 +49,7 @@ class Page(HTMLParser):
                 self.local.append(unquote(urlsplit(value).path))
 
 
-def check():
+def check(original_source=None):
     timeline = ROOT / "assets/timeline"
     for filename in (ROOT / "index.html", timeline / "index.html"):
         page = Page(filename.read_text())
@@ -41,6 +63,25 @@ def check():
     links = [[(a.attrib, ET.tostring(a, encoding="unicode")) for a in variant.findall("s:a", NS)] for variant in variants]
     assert len(links[0]) == 160 and len(links[1]) == 160
     assert [attrs for attrs, _ in links[0]] == [attrs for attrs, _ in links[1]]
+    for variant in variants:
+        assert variant.get('viewBox') == '0 70 2336 3314'
+        assert not IMPORTER['EDITORIAL_NOTE'].search(ET.tostring(variant, encoding='unicode'))
+        assert not any((t.text or '') in IMPORTER['DUPLICATE_HEADINGS'] for t in variant.findall('s:text', NS))
+    cleaner = IMPORTER['clean_tooltip']
+    assert cleaner('I3D | 2017-05-22 | DeepMind; Oxford | CVPR 2017') == 'I3D | 2017-05-22 | DeepMind; Oxford | CVPR 2017'
+    assert cleaner('Work | 2026-01-01 | NYU (Courant) | 正式 venue 未核实') == 'Work | 2026-01-01 | NYU (Courant)'
+    assert cleaner('Work | 2026-01-01 | Lab | ICLR 2026 (arXiv publication comment)') == 'Work | 2026-01-01 | Lab'
+    assert cleaner('Vega | 2026-06-30 | TikTok（作者主页称为报告；完整论文署名机构待核验） | 技术报告；未核实正式 venue') == 'Vega | 2026-06-30 | TikTok'
+    assert cleaner('V-JEPA 2-AC（动作条件变体） | 2025-06-11 | Meta FAIR | 技术报告；未核实正式 venue').startswith('V-JEPA 2-AC（动作条件变体） |')
+    if original_source:
+        originals = re.findall(r'<svg\b.*?</svg>', original_source.read_text(), re.S)
+        assert len(originals) == 2
+        for original, presented in zip(originals, variants):
+            before = ET.fromstring(original)
+            assert artwork_without_editorial_metadata(before) == artwork_without_editorial_metadata(presented), 'Scientific artwork, labels or links changed'
+            before_identity = [tuple(part.strip() for part in (a.find('s:title', NS).text or '').split('|')[:2]) for a in before.findall('s:a', NS)]
+            after_identity = [tuple(part.strip() for part in (a.find('s:title', NS).text or '').split('|')[:2]) for a in presented.findall('s:a', NS)]
+            assert before_identity == after_identity, 'Version-specific work names or dates changed'
     for source in inline:
         embedded = ET.fromstring(source)
         embedded_links = [ET.tostring(a, encoding="unicode") for a in embedded.findall("s:a", NS)]
@@ -64,8 +105,10 @@ def check():
     assert template.count("<!-- TIMELINE_ART -->") == 1
     assert "<!-- TIMELINE_" not in document
     assert "F02_manuscript_work_inventory.md" not in document
-    print("PASS: compact reader without authoring/export UI, 160 intact paper entries, original source variants preserved, unique IDs, local assets, valid world SVG.")
+    print("PASS: clean tooltips/headings, 160 intact paper entries, version identities, SVG artwork/links, unique IDs, local assets, valid world SVG.")
 
 
 if __name__ == "__main__":
-    check()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source', type=Path, help='Optionally compare all scientific artwork and links with the original input HTML')
+    check(parser.parse_args().source)

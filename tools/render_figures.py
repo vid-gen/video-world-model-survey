@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 
 FIGURES = {
-    "overview": "F01_teaser_v34b.pdf",
+    "overview": "F01_teaser_cover_v8.pdf",
     "timeline": "F02_field_timeline-5.pdf",
     "reading": "F04_representation_learning-1.pdf",
     "writing-latents": "F05_latent_representations-2.pdf",

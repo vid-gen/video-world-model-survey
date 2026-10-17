@@ -9,7 +9,8 @@ rendered at 2600 pixels wide; source PNG illustrations retain their dimensions.
 
 The exact source filenames and output dimensions are recorded in
 [`figures/manifest.json`](figures/manifest.json). The active overview source is
-`F01_teaser_v34b.pdf`; the timeline source is `F02_field_timeline-5.pdf`.
+`F01_teaser_cover_v8.pdf`, the active Figure 1 in the latest manuscript;
+the timeline source is `F02_field_timeline-5.pdf`.
 
 The inline world-model taxonomy hides only blank PDF page margins through CSS;
 the figure viewer opens the complete, unchanged image. The social preview PNG
@@ -22,10 +23,12 @@ remains credited in the manuscript and the reference collection.
 ## Interactive timeline and observation illustration
 
 The authors supplied `F02_updated_A4_selectable.html` for the interactive timeline.
-Both exact original SVG drawings, with and without affiliations, are preserved
-as source assets in `timeline/`. The embedded reader uses the affiliation-visible
-drawing with every paper entry, title and link intact, omitting only the
-production-note footer. Authoring, printing and download controls from the
+Both SVG presentation variants, with and without affiliations, are retained
+in `timeline/`. Work labels, geometry, dates and paper links are preserved.
+The presentation omits duplicate headings, production notes and editorial
+verification remarks from tooltips. Unverified publication fields are omitted,
+not replaced with inferred venues. The supplied original HTML is not modified.
+The embedded reader uses the affiliation-visible drawing. Authoring, printing and download controls from the
 source HTML are not part of the website. The reader adds compact navigation
 without revising the timeline's research claims. Milestone counts refer to that drawing,
 not the full reference collection. The previously published manuscript timeline

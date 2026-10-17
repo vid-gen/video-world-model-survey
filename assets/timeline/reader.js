@@ -3,6 +3,7 @@
   'use strict';
   const viewport = document.querySelector('#viewport');
   const sheet = document.querySelector('#sheet');
+  const drawingTop = sheet.querySelector('svg').viewBox.baseVal.y;
   const zoomLabel = document.querySelector('#zoom-level');
   const minus = document.querySelector('#zoom-out');
   const plus = document.querySelector('#zoom-in');
@@ -51,7 +52,7 @@
   const yearPositions = new Map([['0', 0], ['2017', 150], ['2021', 280], ['2022', 410], ['2023', 590], ['2024', 960], ['2025', 1430], ['2026', 2220], ['world', 3010]]);
   document.querySelector('#year').addEventListener('change', event => {
     const y = yearPositions.get(event.target.value) || 0;
-    viewport.scrollTop = y * usableWidth() * zoom / 2336;
+    viewport.scrollTop = Math.max(0, y - drawingTop) * usableWidth() * zoom / 2336;
     if (event.target.value === 'world') viewport.scrollLeft = (sheet.offsetWidth - viewport.clientWidth) / 2;
   });
   if ('ResizeObserver' in window) new ResizeObserver(() => {

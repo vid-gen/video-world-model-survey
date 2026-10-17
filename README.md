@@ -66,7 +66,9 @@ The self-contained `assets/timeline/` reader displays the affiliation-visible
 vector drawing from the authors' supplied `F02_updated_A4_selectable.html`, with
 all 160 paper entries and URLs intact. The website keeps only compact zoom, year
 and direction navigation; authoring/export controls and production notes are not
-part of the presentation. Both exact source SVG variants are retained as assets.
+part of the presentation. Both SVG presentation variants are retained as assets;
+duplicate headings and editorial verification notes are omitted without changing
+work labels, geometry or links. Uncertain publication fields are not asserted.
 The reader can be opened independently of the main page. Without JavaScript,
 the complete vector timeline and paper links remain available; printing
 the main page uses the original paper figure instead of a clipped viewport.
